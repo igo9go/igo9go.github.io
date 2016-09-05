@@ -84,16 +84,40 @@
 
 
 
-<meta name="description" content="MYSQL优化">
+<meta name="description" content="MYSQL优化[http://d.pr/i/HJUk][1]
+
+为查询缓存优化你的查询
+EXPLAIN你的SELECT查询。根据结果给出分析相应的查询优化
+当只要一行数据时使用LIMIT1，MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查少下一条符合记录的数据。
+为搜索字段建索引
+在Join表的时候使用相当类型的数据，并将其索引
+千万不要ORDER BY RAND()
+避免 SEL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql优化">
 <meta property="og:url" content="http://igo9go.github.io/2016/09/05/mysql优化/index.html">
 <meta property="og:site_name" content="justudy">
-<meta property="og:description" content="MYSQL优化">
-<meta property="og:updated_time" content="2016-09-05T12:04:17.000Z">
+<meta property="og:description" content="MYSQL优化[http://d.pr/i/HJUk][1]
+
+为查询缓存优化你的查询
+EXPLAIN你的SELECT查询。根据结果给出分析相应的查询优化
+当只要一行数据时使用LIMIT1，MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查少下一条符合记录的数据。
+为搜索字段建索引
+在Join表的时候使用相当类型的数据，并将其索引
+千万不要ORDER BY RAND()
+避免 SEL">
+<meta property="og:updated_time" content="2016-09-05T14:51:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql优化">
-<meta name="twitter:description" content="MYSQL优化">
+<meta name="twitter:description" content="MYSQL优化[http://d.pr/i/HJUk][1]
+
+为查询缓存优化你的查询
+EXPLAIN你的SELECT查询。根据结果给出分析相应的查询优化
+当只要一行数据时使用LIMIT1，MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查少下一条符合记录的数据。
+为搜索字段建索引
+在Join表的时候使用相当类型的数据，并将其索引
+千万不要ORDER BY RAND()
+避免 SEL">
 
 
 
@@ -325,7 +349,30 @@
       
 
       
-        <h1 id="MYSQL优化"><a href="#MYSQL优化" class="headerlink" title="MYSQL优化"></a>MYSQL优化</h1>
+        <h1 id="MYSQL优化"><a href="#MYSQL优化" class="headerlink" title="MYSQL优化"></a>MYSQL优化</h1><p>[<a href="http://d.pr/i/HJUk][1" target="_blank" rel="external">http://d.pr/i/HJUk][1</a>]</p>
+<ol>
+<li>为查询缓存优化你的查询</li>
+<li>EXPLAIN你的SELECT查询。根据结果给出分析相应的查询优化</li>
+<li>当只要一行数据时使用LIMIT1，MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查少下一条符合记录的数据。</li>
+<li>为搜索字段建索引</li>
+<li>在Join表的时候使用相当类型的数据，并将其索引</li>
+<li>千万不要ORDER BY RAND()</li>
+<li>避免 SELECT * 8. 永远为每张表设置一个ID，为数据库里的每张表都设置一个ID做为其主键，而且最好的是一个INT型的（推荐使用UNSIGNED），并设置上自动增加的AUTO-INCREMENT标志</li>
+<li>使用ENUM而不是VARCHAR</li>
+<li>从PROCEDURE ANALYSE()取得建议</li>
+<li>尽可能的使用NOT NULL</li>
+<li>Prepared Statements，Prepared Statements可以检查一些你绑定好的变量，这样可以保护你的程序不会受到“SQL注入式”攻击。当然，你也可以手动地检查你的这些变量，然而，手动的检查容易出问题，而且很经常会被程序员忘了。当我们使用一些framework或是ORM的时候，这样的问题会好一些。</li>
+<li>无缓冲的查询，mysql-unbuffered-query()发送一个SQL语句到MySQL而并不像mysql-query()一样去自动fethch和缓存结果。这会相当节约很多可观的内存，尤其是那些会产生大量结果的查询语句，并且，你不需要等到所有的结果都返回，只需要第一行数据返回的时候，你就可以开始马上开始工作于查询结果了。</li>
+<li>把IP地址存成UNSIGNED INT</li>
+<li>固定长度的表会更快，固定长度的表会提高性能，因为MySQL搜寻得会更快一些，因为这些固定的长度是很容易计算下一个数据的偏移量的，所以读取的自然也会很快。而如果字段不是定长的，那么，每一次要找下一条的话，需要程序找到主键。可能会浪费空间</li>
+<li>垂直分割，“垂直分割”是一种把数据库中的表按列变成几张表的方法，这样可以降低表的复杂度和字段的数目，从而达到优化的目的。</li>
+<li>拆分大的DELETE或INSERT语句，这两个操作是会锁表的，表一锁住了，别的操作都进不来了。</li>
+<li>越小的列会越快</li>
+<li>选择正确的存储引擎</li>
+<li>用一个对象关系映射器（Object Relational Mapper）</li>
+<li>小心“永久链接” mysql-pconnect()</li>
+</ol>
+
       
     </div>
 
@@ -389,6 +436,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/05/mysql索引/" rel="prev" title="mysql-index">
+                mysql-index <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -456,7 +507,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

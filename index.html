@@ -268,6 +268,154 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/05/mysql索引/" itemprop="url">
+                  mysql-index
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T20:49:22+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mysql索引"><a href="#mysql索引" class="headerlink" title="mysql索引"></a>mysql索引</h1><p><img src="[http://d.pr/i/HJUk]" alt=""></p>
+<p>聚簇索引的叶节点就是数据节点，而非聚簇索引的页节点仍然是索引检点，并保留一个链接指向对应数据块。</p>
+<ul>
+<li>myisan引擎</li>
+</ul>
+<p>MyISAM 为非聚簇索引（NonCluster Index）<br>MyISAM中索引检索的算法为首先按照B+Tree搜索算法搜索索引，如果指定的Key存在，则取出其data域的值，然后以data域的值为地址，读取相应数据记录</p>
+<ul>
+<li>innodb引擎</li>
+</ul>
+<p>InnoDB的主索引是聚簇索引（Cluster Index），数据和Key本身都会存储在B+Tree的叶子节点<br>InnoDB的辅助索引本身主要是记录主索引的Key，最终查找数据还是从辅助索引再去主索引查找</p>
+<p>纯读模式下，性能对比MyISAM引擎会稍有影响（辅助索引需要3次io，主索引需要3次io，MyISAM可能只需要4次IO）</p>
+<p><strong>如果非特殊原因，强烈建议使用  InnoDB（XtraDB）存储引擎！</strong><br>原因：（对比MyISAM or Aria）<br>更稳定可靠的数据存储和索引结构；整个存储引擎设计思想更可靠先进，接近于Oracle、SQL Server级别的数据库（有兴趣可以去阅读源码了解细节）<br>更多可靠特性支持，比如事务、外键等支持（支付等关键领域事务非常重要）<br>运行更稳定，不论读写数据的量级，都能够保证比较稳定的性能响应<br>更好地崩溃恢复机制，特别利用一些Percona的一些工具，更有效运维InnoDB<br>MySQL 5.5+ 对比 MySQL 5.1.x 总体功能和性能提升太多，改进太多</p>
+<p>###mysql优化</p>
+<ul>
+<li><p>硬件</p>
+<ol>
+<li>CPU：使用多核CPU，能够充分发挥新版MySQL多核下的效果，建议4核以上</li>
+<li>内存：如果数据量比较大，建议使用不要低于20G内存的服务器；</li>
+<li><p>硬盘：如果条件允许使用SSD硬盘，TPS能够达到2000或者更高；SAS硬盘的TPS极限也可能在1000左右，对性能的提升是非常显著；为保证数据可靠性，建议适合的RAID方案</p>
+</li>
+<li><p>网卡：保证网卡不是瓶颈，保证足够的吞吐量，建议千兆网卡</p>
+</li>
+</ol>
+</li>
+<li>linux服务器关键配置<ol>
+<li>文件打开描述符：/etc/security/limits.conf 中 nofile、/proc/sys/fs/nr_open</li>
+<li>可分配文件句柄数：/etc/sysctl.conf 中 fs.file-max、/proc/sys/fs/file-max</li>
+<li>进程数：/etc/security/limits.conf 中的 nproc</li>
+<li>线程数：/proc/sys/kernel/thread-max</li>
+<li>其他TCP和网络相关选项：/etc/sysctl.conf</li>
+<li>这些都可以通过ulimit 或 直接调整 /proc 中变量进行临时修改</li>
+<li>建议关闭SWAP分区（内存要足够大才行）；如果数据太大，为了防止夯死主机，可以设置2G左右的SWAP分区</li>
+</ol>
+</li>
+<li>msyql 配置等</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/05/mysql优化/" itemprop="url">
                   mysql优化
                 </a>
@@ -331,7 +479,30 @@
       
         
           
-            <h1 id="MYSQL优化"><a href="#MYSQL优化" class="headerlink" title="MYSQL优化"></a>MYSQL优化</h1>
+            <h1 id="MYSQL优化"><a href="#MYSQL优化" class="headerlink" title="MYSQL优化"></a>MYSQL优化</h1><p>[<a href="http://d.pr/i/HJUk][1" target="_blank" rel="external">http://d.pr/i/HJUk][1</a>]</p>
+<ol>
+<li>为查询缓存优化你的查询</li>
+<li>EXPLAIN你的SELECT查询。根据结果给出分析相应的查询优化</li>
+<li>当只要一行数据时使用LIMIT1，MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查少下一条符合记录的数据。</li>
+<li>为搜索字段建索引</li>
+<li>在Join表的时候使用相当类型的数据，并将其索引</li>
+<li>千万不要ORDER BY RAND()</li>
+<li>避免 SELECT * 8. 永远为每张表设置一个ID，为数据库里的每张表都设置一个ID做为其主键，而且最好的是一个INT型的（推荐使用UNSIGNED），并设置上自动增加的AUTO-INCREMENT标志</li>
+<li>使用ENUM而不是VARCHAR</li>
+<li>从PROCEDURE ANALYSE()取得建议</li>
+<li>尽可能的使用NOT NULL</li>
+<li>Prepared Statements，Prepared Statements可以检查一些你绑定好的变量，这样可以保护你的程序不会受到“SQL注入式”攻击。当然，你也可以手动地检查你的这些变量，然而，手动的检查容易出问题，而且很经常会被程序员忘了。当我们使用一些framework或是ORM的时候，这样的问题会好一些。</li>
+<li>无缓冲的查询，mysql-unbuffered-query()发送一个SQL语句到MySQL而并不像mysql-query()一样去自动fethch和缓存结果。这会相当节约很多可观的内存，尤其是那些会产生大量结果的查询语句，并且，你不需要等到所有的结果都返回，只需要第一行数据返回的时候，你就可以开始马上开始工作于查询结果了。</li>
+<li>把IP地址存成UNSIGNED INT</li>
+<li>固定长度的表会更快，固定长度的表会提高性能，因为MySQL搜寻得会更快一些，因为这些固定的长度是很容易计算下一个数据的偏移量的，所以读取的自然也会很快。而如果字段不是定长的，那么，每一次要找下一条的话，需要程序找到主键。可能会浪费空间</li>
+<li>垂直分割，“垂直分割”是一种把数据库中的表按列变成几张表的方法，这样可以降低表的复杂度和字段的数目，从而达到优化的目的。</li>
+<li>拆分大的DELETE或INSERT语句，这两个操作是会锁表的，表一锁住了，别的操作都进不来了。</li>
+<li>越小的列会越快</li>
+<li>选择正确的存储引擎</li>
+<li>用一个对象关系映射器（Object Relational Mapper）</li>
+<li>小心“永久链接” mysql-pconnect()</li>
+</ol>
+
           
         
       
@@ -1136,7 +1307,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
       
         
           
-            <h1 id="在有赞的半年"><a href="#在有赞的半年" class="headerlink" title="在有赞的半年"></a>在有赞的半年</h1><p>从今年的年初第二天上班加入了有赞的大家庭，到七月十五号辞职，虽然时间不长，但是这段时间自身成长了很多。为此我想回顾一下这几个月来的成长经历<br>有赞在大学里就听过这家公司，那时候还叫口袋通，只知道是在手机开店的工具，最后慢慢了解这是阿里团队出来的，看到招聘信息什么的全员配备macbook，感觉很是高大上对于还未踏入职场我来说。到大四下学期也曾投过有赞的简历，那时候可能因为简历没什么内容，自然也就石沉大海了，最终进了同花顺，在同花顺工作了一年，感觉每天都是在重复造轮子，没什么技术上的提升，之后投了有赞的简历，最后也是收到了有赞的offer,在15年过年前辞去了同花顺的工作。然后在过年春节放假回来加入了有赞。<br>刚进有赞就开始了新人班的培训，这大概是有赞的一大特色，每个新入职的小伙伴都会接受一次新人班培训，主要是公司的几个合伙人讲讲公司的企业文化啊，业务发展，产品方向，未来战略等等，当然在这期间还要开一家有赞的店铺，熟悉业务嘛。为期二周的新人培训我收获最多了是认识了一堆优秀的人，我是我们小组最小的，其他大多都是工作四五年有着牛逼的经历的人。有日本归国的ios开发，有从阿里出来的PHP开发十年经验的,有厉害的产品设计师，有浙大毕业的测试工程师，反正各个在我看来都是牛逼哄哄的，于是自己也默默地对自己说等我到他么那个年龄一定要比他们更牛X。<br> 新人培训完了还有二天的户外拓展，对于初入职场的我来说是第一次参加这种活动，很多看似不可能完成的任务，最终都能完成。转变思维，挑战自己，终将能够达到目标。<br>在有赞主要负责商家版后台相关的开发，包括店铺的一些设置，商品的一些调整，以及服务市场的功能模块的开发等。在这里学习最多的就是规范，代码规范，开发流程规范等。<br>使用gitflow协作开发，一开始接触git对很多命令原理都不熟悉，师兄推荐我用sourcetree,git的GUi操作界面，但是有时不太理解其中的原理总会在代码合并上传的是否出一些错误，最后主管叫我使用命令行，不要再使用操作界面，然后我就默默练git的命令行，慢慢的就熟悉掌握了很多命令，这些绝对是使用图像界面学不到的。其实打心里还是很佩服哪些使用命令行的人，尤其使用vi作为编辑器的小伙伴。<br>代码的规范也是团队一直强调的，最重要的环节就是codereview，我想每一个有理想的团队都应该去做codereview，这非常有助于团队的代码质量的提升，让别人发现你代码的不规范的地方，逻辑不合理的地方。在你的代码上线前经过团队的codereview后，bug出现的概念也会大大降低。<br>项目开发的规范主要取决于项目的管理，有赞有一只研发效率团队负责公司整体的项目开发进度控制，项目立项，PM，每日站会，看板，燃尽图,这些保障了项目如期上线。确实很多东西只有规范起来，才能有序高效的进行，不然一团乱麻，很难达到理想的状态。<br>有你有赞！</p>
+            <h1 id="在有赞的半年–规范"><a href="#在有赞的半年–规范" class="headerlink" title="在有赞的半年–规范"></a>在有赞的半年–规范</h1><p>从今年的年初第二天上班加入了有赞的大家庭，到七月十五号辞职，虽然时间不长，但是这段时间自身成长了很多。为此我想回顾一下这几个月来的成长经历<br>有赞在大学里就听过这家公司，那时候还叫口袋通，只知道是在手机开店的工具，最后慢慢了解这是阿里团队出来的，看到招聘信息什么的全员配备macbook，感觉很是高大上对于还未踏入职场我来说。到大四下学期也曾投过有赞的简历，那时候可能因为简历没什么内容，自然也就石沉大海了，最终进了同花顺，在同花顺工作了一年，感觉每天都是在重复造轮子，没什么技术上的提升，之后投了有赞的简历，最后也是收到了有赞的offer,在15年过年前辞去了同花顺的工作。然后在过年春节放假回来加入了有赞。<br>刚进有赞就开始了新人班的培训，这大概是有赞的一大特色，每个新入职的小伙伴都会接受一次新人班培训，主要是公司的几个合伙人讲讲公司的企业文化啊，业务发展，产品方向，未来战略等等，当然在这期间还要开一家有赞的店铺，熟悉业务嘛。为期二周的新人培训我收获最多了是认识了一堆优秀的人，我是我们小组最小的，其他大多都是工作四五年有着牛逼的经历的人。有日本归国的ios开发，有从阿里出来的PHP开发十年经验的,有厉害的产品设计师，有浙大毕业的测试工程师，反正各个在我看来都是牛逼哄哄的，于是自己也默默地对自己说等我到他么那个年龄一定要比他们更牛X。<br> 新人培训完了还有二天的户外拓展，对于初入职场的我来说是第一次参加这种活动，很多看似不可能完成的任务，最终都能完成。转变思维，挑战自己，终将能够达到目标。<br>在有赞主要负责商家版后台相关的开发，包括店铺的一些设置，商品的一些调整，以及服务市场的功能模块的开发等。在这里学习最多的就是规范，代码规范，开发流程规范等。<br>使用gitflow协作开发，一开始接触git对很多命令原理都不熟悉，师兄推荐我用sourcetree,git的GUi操作界面，但是有时不太理解其中的原理总会在代码合并上传的是否出一些错误，最后主管叫我使用命令行，不要再使用操作界面，然后我就默默练git的命令行，慢慢的就熟悉掌握了很多命令，这些绝对是使用图像界面学不到的。其实打心里还是很佩服哪些使用命令行的人，尤其使用vi作为编辑器的小伙伴。<br>代码的规范也是团队一直强调的，最重要的环节就是codereview，我想每一个有理想的团队都应该去做codereview，这非常有助于团队的代码质量的提升，让别人发现你代码的不规范的地方，逻辑不合理的地方。在你的代码上线前经过团队的codereview后，bug出现的概念也会大大降低。<br>项目开发的规范主要取决于项目的管理，有赞有一只研发效率团队负责公司整体的项目开发进度控制，项目立项，PM，每日站会，看板，燃尽图,这些保障了项目如期上线。确实很多东西只有规范起来，才能有序高效的进行，不然一团乱麻，很难达到理想的状态。<br>有你有赞！</p>
 
           
         
@@ -1249,7 +1420,8 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
       
         
           
-            
+            <p>#在同花顺的一年–基础的成长<br>进入同花顺也是机缘巧合吧，本来之前还对这家公司充满了不信任。不过不可否认，在同花顺将近一年的时间里技术上的成长很大很大。<br>在我找实习的那段时间，经常能看到各个网站同花顺的招聘，那时候根本不了解这家公司，对什么上市也没概念，感觉这家公司就是天天叫人去面试，就如外面的培训机构一样感觉不靠谱，所以我从来不接受同花顺的面试邀请。在一次我下午到文一路面试结束后，同花顺的hr给我打电话叫我去面试，记得已经下午五点了，打开地图一看挺近的，就抱着了解了解的态度去看看了。二个人出来问了一通，面试完了也没啥感觉。第二天一早就接到同花顺hr（婷姐）给我打电话通知我实习面试通过了，然后告诉我实习一天80快，中餐补助8块钱，我当时是有每月三千的薪资的，一想我就拒绝不打算去，然后婷姐跟我说这边技术氛围好，学习成大大，等转正以后工资都是六七千的，最后我也就答应去了。<br>在同花顺我所在的网站部，主要有二个团队，一个是负责圈子，社交SNS这类网站的，还有一个就是我所在的团队主要负责F10，个股，新闻资讯，行情接口等项目。刚过去是先做了一星期的练习题，而后通过了一星期的试用，就开始让我做数据报表，这是一个挤压很久没有专门的人去做的一个项目，大概做了一个多月的报表，报表现在看来并不难，可那时候对我还没有多少实战经验来说的已经是一头雾水，不过好在天资聪慧，哈哈，很快掌握了其中的奥妙，他们使用的是ZEND框架精简后的叫light框架。之后就是导师叫我和另外一个师兄一起做F10项目了…</p>
+
           
         
       
@@ -1420,7 +1592,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
