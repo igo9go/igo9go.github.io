@@ -1,0 +1,917 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="#PHP各版本特性
+PHP5.6
+可以使用表达式定义常量
+ https://php.net/manual/zh/migration56.new-features.php 在之前的 PHP 版本中，必须使用静态值来定义常量，声明属性以及指定函数参数默认值。 现在你可以使用包括数值、字符串字面量以及其他常量在内的数值表达式来 定义常量、声明属性以及设置函数参数默认值。
+ 
+ f().&quot;
+ &quot;;
+ ec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP各版本特性">
+<meta property="og:url" content="http://igo9go.github.io/2016/08/23/PHP各版本特性/index.html">
+<meta property="og:site_name" content="justudy">
+<meta property="og:description" content="#PHP各版本特性
+PHP5.6
+可以使用表达式定义常量
+ https://php.net/manual/zh/migration56.new-features.php 在之前的 PHP 版本中，必须使用静态值来定义常量，声明属性以及指定函数参数默认值。 现在你可以使用包括数值、字符串字面量以及其他常量在内的数值表达式来 定义常量、声明属性以及设置函数参数默认值。
+ 
+ f().&quot;
+ &quot;;
+ ec">
+<meta property="og:updated_time" content="2016-08-23T14:10:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP各版本特性">
+<meta name="twitter:description" content="#PHP各版本特性
+PHP5.6
+可以使用表达式定义常量
+ https://php.net/manual/zh/migration56.new-features.php 在之前的 PHP 版本中，必须使用静态值来定义常量，声明属性以及指定函数参数默认值。 现在你可以使用包括数值、字符串字面量以及其他常量在内的数值表达式来 定义常量、声明属性以及设置函数参数默认值。
+ 
+ f().&quot;
+ &quot;;
+ ec">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://igo9go.github.io/2016/08/23/PHP各版本特性/"/>
+
+  <title> PHP各版本特性 | justudy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">justudy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">just study</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHP各版本特性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T22:10:21+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#PHP各版本特性</p>
+<h3 id="PHP5-6"><a href="#PHP5-6" class="headerlink" title="PHP5.6"></a>PHP5.6</h3><ol>
+<li><p>可以使用表达式定义常量</p>
+<p> <a href="https://php.net/manual/zh/migration56.new-features.php" target="_blank" rel="external">https://php.net/manual/zh/migration56.new-features.php</a><br> 在之前的 PHP 版本中，必须使用静态值来定义常量，声明属性以及指定函数参数默认值。 现在你可以使用包括数值、字符串字面量以及其他常量在内的数值表达式来 定义常量、声明属性以及设置函数参数默认值。</p>
+ <pre>
+ <?php
+ const ONE = 1;
+ const TWO = ONE * 2;    //定义常量时允许使用之前定义的常量进行计算
+ class C {
+     const THREE = TWO + 1;
+     const ONE_THIRD = ONE / self::THREE;
+     const SENTENCE = 'The value of THREE is '.self::THREE;
+     public function f($a = ONE + self::THREE) { //允许常量作为函数参数默认值
+         return $a;
+     }
+ }
+ echo (new C)->f()."
+ ";
+ echo C::SENTENCE;
+ ?> 
+ </pre>
+
+
+</li>
+</ol>
+<pre><code>可以通过 const 关键字来定义类型为 array 的常量。
+&lt;pre&gt;
+&lt;?php
+const ARR = [&apos;a&apos;, &apos;b&apos;];
+echo ARR[0];
+?&gt;
+&lt;/pre&gt;
+</code></pre><ol>
+<li><p>使用 … 运算符定义变长参数函数</p>
+<p> 现在可以不依赖 func_get_args()， 使用 … 运算符 来实现 变长参数函数。</p>
+ <pre>
+ <?php
+ function test(...$args)
+ {
+     print_r($args);
+ }
+
+ test(1,2,3);
+ //输出
+ Array
+ (
+     [0] => 1
+     [1] => 2
+     [2] => 3
+ )
+ ?>
+ </pre>
+</li>
+<li><p>使用 ** 进行幂运算</p>
+<p> 加入右连接运算符 <strong> 来进行幂运算。 同时还支持简写的 </strong>= 运算符，表示进行幂运算并赋值。</p>
+ <pre>
+ printf(2 ** 3); // 8
+ $a = 2;
+ $a **= 3;
+ printf($a);  // 8
+ </pre>
+</li>
+<li><p>use function 以及 use const</p>
+<p> use 运算符可以在类中导入外部的函数和常量了。 对应的结构为 use function 和 use const。</p>
+</li>
+</ol>
+<pre><code>&lt;?php
+namespace NameSpace {
+    const FOO = 42;
+    function f() { echo __FUNCTION__.&quot;&quot;; }
+}
+namespace {
+    use const NameSpaceFOO;
+    use function NameSpacef;
+    echo FOO.&quot;&quot;;
+    f();    
+}
+?&gt;
+</code></pre><ol>
+<li><p>加入 hash_equals() 函数，以恒定的时间消耗来进行字符串比较，以避免时序攻击</p>
+<p> &lt;?php<br> $expected  = crypt(‘12345’, ‘$2a$07$usesomesillystringforsalt$’);<br> $incorrect = crypt(‘1234’,  ‘$2a$07$usesomesillystringforsalt$’);</p>
+<p> var_dump(hash_equals($expected, $incorrect)); // false<br> ?&gt;</p>
+</li>
+<li><p>加入 __debugInfo()<br> 当使用 var_dump() 输出对象的时候，可以用来控制要输出的属性和值。</p>
+<pre>
+ <?php
+ class C {
+     private $prop;
+     public function __construct($val) {
+         $this->prop = $val;
+     }
+     public function __debugInfo() {
+         return $this->prop;
+     }
+ }
+ var_dump(new C(42));
+ ?>
+ </pre>
+
+</li>
+</ol>
+<h3 id="PHP-5-5"><a href="#PHP-5-5" class="headerlink" title="PHP 5.5"></a>PHP 5.5</h3><ol>
+<li><p>新增 Generators</p>
+<p> yield关键字用于当函数需要返回一个迭代器的时候，逐个返回值。<br> function number10()<br> {</p>
+<pre><code>for($i = 1; $i &lt;= 10; $i += 1)
+    yield $i;
+</code></pre><p> } 该函数的返回值是一个数组：<br> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</p>
+</li>
+<li><p>新增 finally 关键字 Finally处理流程</p>
+</li>
+<li><p>foreach 支持 list() foreach 支持通过 list() 将嵌套数组分离到单独的变量。</p>
+</li>
+</ol>
+<pre><code>&lt;?php
+$array = [
+    [1, 2],
+    [3, 4],
+];
+
+foreach ($array as list($a, $b)) {
+    echo $a.$b;
+}
+?&gt;
+</code></pre><ol>
+<li><p>empty() 支持传入一个任意表达式，而不仅是一个变量</p>
+<p> &lt;?php<br> function always_false() {</p>
+<pre><code>return false;
+</code></pre><p> }</p>
+<p> if (empty(always_false())) {</p>
+<pre><code>echo &apos;This will be printed.&apos;;
+</code></pre><p> }</p>
+</li>
+<li><p>直接通过下标获取访问数组和字符串字面量的元素或字符</p>
+<p> echo [1, 2, 3][0]; // 1<br> echo ‘PHP’[0]; // P</p>
+</li>
+<li><p>新的密码哈希 API</p>
+<p> 缺点是缺乏互操作性，在需要和其他语言对接时会比较麻烦。<br> //加密<br> echo $hash = password_hash(‘rasmuslerdorf’, PASSWORD_DEFAULT);<br> //输出结果类似于：$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a</p>
+<p> //验证<br> if(password_verify(‘rasmuslerdorf’,’$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a’)) { </p>
+<pre><code>echo &quot;密码正确&quot;;
+</code></pre><p> } else {  </p>
+<pre><code>echo &quot;密码错误&quot;;
+</code></pre><p> }</p>
+</li>
+<li><p>新增 boolval() 函数</p>
+<p> PHP已经实现了strval、intval和floatval的函数。为了达到一致性将添加boolval函数。</p>
+</li>
+<li><p>新增 array_column() 函数</p>
+<p> 可用来返回数组中指定的一列。<br> $records = array(</p>
+<pre><code>array(&apos;id&apos; =&gt; 2135,&apos;name&apos; =&gt; &apos;John&apos;),
+array(&apos;id&apos; =&gt; 3245,&apos;name&apos; =&gt; &apos;Smith&apos;),
+array(&apos;id&apos; =&gt; 5342,&apos;name&apos; =&gt; &apos;Peter&apos;)
+</code></pre><p> );</p>
+<p> //从结果集中取出 name 列<br> $names = array_column($records, ‘name’);<br> print_r($names);</p>
+<p> //从结果集中总取出 name 列，用相应的 id 作为键值<br> $names = array_column($records, ‘name’, ‘id’);<br> print_r($names);</p>
+<h3 id="PHP-5-4"><a href="#PHP-5-4" class="headerlink" title="PHP 5.4"></a>PHP 5.4</h3></li>
+<li><p>新增 Traits<br> // Traits不能被单独实例化，只能被类所包含<br> trait SayWorld<br> {</p>
+<pre><code>public function sayHello()
+{
+    echo &apos;World!&apos;;
+}
+</code></pre><p> }</p>
+<p> class MyHelloWorld<br> {</p>
+<pre><code>// 将SayWorld中的成员包含进来
+use SayWorld;
+</code></pre><p> }</p>
+<p> $xxoo = new MyHelloWorld();<br> // sayHello() 函数是来自 SayWorld 构件的<br> $xxoo-&gt;sayHello();</p>
+</li>
+<li><p>新增短数组语法</p>
+<p> // 原来的数组写法<br> $arr = array(“key” =&gt; “value”, “key2” =&gt; “value2”);<br> $arr = array(1,2,3,4);<br> // 简写形式<br> $arr = [“key” =&gt; “value”, “key2” =&gt; “value2”];<br> $arr = [1,2,3,4];</p>
+</li>
+<li><p>新增支持对函数返回数组的成员访问解析</p>
+<p> print func()[0];</p>
+</li>
+<li><p>无论 php.ini 中是否设置 short_open_tag， 格式总是可用。</p>
+<p> 这种简写形式被称为 Short Open Tag, 在 PHP5.3 起被默认开启，在 PHP5.4 起总是可用。 使用这种简写形式在 HTML 中嵌入 PHP 变量将会非常方便。</p>
+</li>
+<li><p>内置用于开发的 CLI 模式的 web server<br> //启动Web服务器<br> php -S localhost:8000<br> //启动时指定根目录<br> php -S localhost:8000 -t /home/me/public_html/foo<br> //使用路由（Router）脚本<br> php -S localhost:8000 index.php //所有的请求都会由index.php来处理。6、新增在实例化时访问类成员<br>  (new Foo)-&gt;bar();7、新增了动态访问静态方法的方式<br> $func = “funcXXOO”;<br> A::{$func}();</p>
+</li>
+<li><p>闭包支持 $this </p>
+</li>
+<li><p>新增二进制直接量</p>
+<p> $bin = bindec(110011); //之前需要这样写<br> $bin = 0b110011;<br> echo $bin; //51</p>
+</li>
+<li><p>session提供了上传进度支持</p>
+<p>通过 $_SESSION[“upload_progress_name”] 就可以获得当前文件上传的进度信息，结合 Ajax 就能很容易的实现上传进度条。</p>
+</li>
+<li><p>默认使用 mysqlnd</p>
+<p>现在mysql, mysqli, pdo_mysql默认使用mysqlnd本地库，在PHP5.4以前需要：./configure –with-mysqli=mysqlnd<br>现在：./configure –with-mysqli</p>
+</li>
+<li><p>让 json 更懂中文</p>
+<p>echo json_encode(“中文”, JSON_UNESCAPED_UNICODE);<br>//“中文” 13、default_charset从ISO-8859-1已经变为UTF-8<br>默认发送“Content-Type: text/html; charset=utf-8”</p>
+<h3 id="PHP-5-3"><a href="#PHP-5-3" class="headerlink" title="PHP 5.3"></a>PHP 5.3</h3><p>1、支持命名空间<br>&lt;?php<br>namespace my<br>ame; // 定义命名空间</p>
+</li>
+</ol>
+<p>class MyClass {}<br>const MYCONST = 1;</p>
+<p>$a = new my<br>ameMyClass;<br>$class = <strong>NAMESPACE</strong>.’MyClass’;<br>$b = new $class;</p>
+<p>$c = my<br>ameMYCONST;<br>$d = namespaceMYCONST;</p>
+<p>var_dump($a,$b,$c,$d);<br>/<em><br>object(my<br>ameMyClass)#1 (0) {<br>}<br>object(my<br>ameMyClass)#2 (0) {<br>}<br>int(1)<br>int(1)
+</em>/<br>?&gt;2、增加后期静态绑定<br>在PHP中，我们可以在类中通过self关键字或者CLASS来判断或调用当前类。但有一个问题，如果我们是在子类中调用，得到的结果将是父类。因为在继承父类的时候，静态成员就已经被绑定了。<br>class A<br>{<br>    static public function callFuncXXOO()<br>    {<br>        print self::funcXXOO();<br>    }</p>
+<pre><code>static public function funcXXOO()
+{
+    return &quot;A::funcXXOO()&quot;;
+}
+</code></pre><p>}</p>
+<p>class B extends A<br>{<br>    static public function funcXXOO()<br>    {<br>        return “B::funcXXOO”;<br>    }<br>}</p>
+<p>$b = new B;<br>$b-&gt;callFuncXXOO();<br>//输出<br>A::funcXXOO() PHP 5.3.0中增加了一个static关键字来引用当前类，即实现了延迟静态绑定：<br>class A<br>{<br>    static public function callFuncXXOO()<br>    {<br>        print static::funcXXOO();<br>    }</p>
+<pre><code>// ...
+</code></pre><p>}<br>// …<br>//这样就会像预期一样输出了：<br>B::funcXXOO<br>3、增加 goto 操作符<br>goto 语句有可能会导致程序流程不清晰，可读性减弱，但在某些情况下具有其独特的方便之处，例如中断深度嵌套的循环和 if 语句。<br>&lt;?php<br>goto test;<br>echo ‘1’;</p>
+<p>test:<br>echo ‘2’;<br>?&gt;</p>
+<p>//以上运行时会输出 2<br>4、添加了原生的闭包(Lambda/匿名函数)支持<br><a href="https://php.net/manual/zh/functions.anonymous.php" target="_blank" rel="external">https://php.net/manual/zh/functions.anonymous.php</a><br>5、新增两个魔术方法, <strong>callStatic 和 </strong>invoke<br>用静态方式中调用一个不可访问方法时，<strong>callStatic() 会被调用。<br>当尝试以调用函数的方式调用一个对象时，</strong>invoke() 方法会被自动调用。<br>class A<br>{<br>    public function <strong>invoke($str)<br>    {<br>        print “A::</strong>invoke(): {$str}”;<br>    }<br>}</p>
+<p>$a = new A;<br>$a(“Hello World”);<br>//输出<br>A::__invoke(): Hello World6、添加 Nowdoc 语法支持<br>&lt;?php<br>$str = &lt;&lt;&lt;’EOD’<br>Example of string<br>spanning multiple lines<br>using nowdoc syntax.<br>EOD;<br>就象 heredoc 结构类似于双引号字符串，Nowdoc 结构是类似于单引号字符串的。Nowdoc 结构很象 heredoc 结构，但是 nowdoc 中不进行解析操作。<br>7、Heredoc 结构中可以用双引号来声明标识符了。<br>&lt;?php<br>echo &lt;&lt;&lt;”FOOBAR”<br>Hello World!<br>FOOBAR;<br>?&gt;8、const 关键字可用来在类定义之外定义常量了<br>&lt;?php<br>define(“CONSTANT_A”, “Hello world”);<br>const CONSTANT_B = ‘Hello World’; const 形式仅适用于常量，不适用于运行时才能求值的表达式：<br>// 正确<br>const XXOO = 1234;<br>// 错误<br>const XXOO = 2 * 617; 和使用 define() 来定义常量不同的是，使用 const 关键字定义常量必须处于最顶端的作用域，因为用此方法是在编译时定义的。即不能在函数内，循环内以及 if 语句之内用 const 来定义常量。</p>
+<p>9、三元运算符可以简写省略中间的部分<br>表达式 expr1 ?: expr3 ，当 expr1 为 TRUE 时返回 expr1，否则返回 expr3。<br>10、异常可以嵌套了<br>&lt;?php</p>
+<p>class MyException extends Exception { }</p>
+<p>class Test {<br>    public function testing() {<br>        try {<br>            try {<br>                throw new MyException(‘foo!’);<br>            } catch (MyException $e) {<br>                /<em> rethrow it </em>/<br>                throw $e;<br>            }<br>        } catch (Exception $e) {<br>            var_dump($e-&gt;getMessage());<br>        }<br>    }<br>}</p>
+<p>$foo = new Test;<br>$foo-&gt;testing();<br>?&gt;11、可以动态访问静态变量了<br>&lt;?php<br>class C {<br>   public static $foo = 123;<br>}</p>
+<p>$a = “C”;<br>echo $a::$foo;<br>?&gt; 上边运行时输出：123<br>12、mail()函数支持记录发送日志了<br>在配置文件 php.ini 中可设置日志路径。参数名：mail.log<br>参考资料<br><a href="https://php.net/manual/zh/migration53.new-features.php" target="_blank" rel="external">https://php.net/manual/zh/migration53.new-features.php</a><br><a href="https://php.net/manual/zh/migration54.new-features.php" target="_blank" rel="external">https://php.net/manual/zh/migration54.new-features.php</a><br><a href="https://php.net/manual/zh/migration55.new-features.php" target="_blank" rel="external">https://php.net/manual/zh/migration55.new-features.php</a><br><a href="https://php.net/manual/zh/migration56.new-features.php" target="_blank" rel="external">https://php.net/manual/zh/migration56.new-features.php</a><br><a href="http://segmentfault.com/a/1190000000403307" target="_blank" rel="external">http://segmentfault.com/a/1190000000403307</a><br><a href="http://blog.csdn.net/heiyeshuwu/article/details/16884725" target="_blank" rel="external">http://blog.csdn.net/heiyeshuwu/article/details/16884725</a><br><a href="http://segmentfault.com/a/1190000002790818" target="_blank" rel="external">http://segmentfault.com/a/1190000002790818</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/14709726873530.jpg" alt="周强 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>多谢打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/14709726873530.jpg" alt="周强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/14709726873530.jpg" alt="周强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/22/loc容器/" rel="next" title="loc容器">
+                <i class="fa fa-chevron-left"></i> loc容器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/23/PHP程序优化技巧大全/" rel="prev" title="PHP程序优化技巧大全">
+                PHP程序优化技巧大全 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="周强" />
+          <p class="site-author-name" itemprop="name">周强</p>
+          <p class="site-description motion-element" itemprop="description">个人站</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title2" target="_blank">Title2</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP5-6"><span class="nav-number">1.</span> <span class="nav-text">PHP5.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-5-5"><span class="nav-number">2.</span> <span class="nav-text">PHP 5.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-5-4"><span class="nav-number">3.</span> <span class="nav-text">PHP 5.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-5-3"><span class="nav-number">4.</span> <span class="nav-text">PHP 5.3</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">周强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
