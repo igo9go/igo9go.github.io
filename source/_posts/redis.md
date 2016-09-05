@@ -1,14 +1,13 @@
 ---
 title: redis
 date: 2016-08-26 15:53:32
-tags:
-categories:
+tags: redis
+categories: redis
 
 ---
-#redis命令
+# redis命令
 
-###KEY
+### KEY
 
 1. DEL key [key ...]
 	> 删除给定的一个或多个 key 。
-
