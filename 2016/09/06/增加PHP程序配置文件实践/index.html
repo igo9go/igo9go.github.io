@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="loc容器," />
+  <meta name="keywords" content="php配置," />
 
 
 
@@ -84,49 +84,25 @@
 
 
 
-<meta name="description" content="loc容器
-superman类依赖 power类。在superman构造函数new power应用
-单一的依赖
-
-
-superman类又依赖了Flight类，Force类，Shot类
-产生了跟多的依赖
-
-
-工厂模式，依赖转移！ 
-是由原来对多个外部的依赖变成了对一个 “工厂” 的依赖  
-我们不应该手动在 “超人” 类中固化了他的 “超能力” 初始化的行为，而转由外部负责，由外部创造超能力模组、装">
+<meta name="description" content="#增加PHP程序配置文件实践
+###最原始的方式
+写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。
+线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配">
 <meta property="og:type" content="article">
-<meta property="og:title" content="loc容器">
-<meta property="og:url" content="http://igo9go.github.io/2016/08/22/loc容器/index.html">
+<meta property="og:title" content="增加PHP程序配置文件实践">
+<meta property="og:url" content="http://igo9go.github.io/2016/09/06/增加PHP程序配置文件实践/index.html">
 <meta property="og:site_name" content="justudy">
-<meta property="og:description" content="loc容器
-superman类依赖 power类。在superman构造函数new power应用
-单一的依赖
-
-
-superman类又依赖了Flight类，Force类，Shot类
-产生了跟多的依赖
-
-
-工厂模式，依赖转移！ 
-是由原来对多个外部的依赖变成了对一个 “工厂” 的依赖  
-我们不应该手动在 “超人” 类中固化了他的 “超能力” 初始化的行为，而转由外部负责，由外部创造超能力模组、装">
-<meta property="og:updated_time" content="2016-08-22T07:24:25.000Z">
+<meta property="og:description" content="#增加PHP程序配置文件实践
+###最原始的方式
+写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。
+线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配">
+<meta property="og:updated_time" content="2016-09-06T06:42:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="loc容器">
-<meta name="twitter:description" content="loc容器
-superman类依赖 power类。在superman构造函数new power应用
-单一的依赖
-
-
-superman类又依赖了Flight类，Force类，Shot类
-产生了跟多的依赖
-
-
-工厂模式，依赖转移！ 
-是由原来对多个外部的依赖变成了对一个 “工厂” 的依赖  
-我们不应该手动在 “超人” 类中固化了他的 “超能力” 初始化的行为，而转由外部负责，由外部创造超能力模组、装">
+<meta name="twitter:title" content="增加PHP程序配置文件实践">
+<meta name="twitter:description" content="#增加PHP程序配置文件实践
+###最原始的方式
+写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。
+线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配">
 
 
 
@@ -147,9 +123,9 @@ superman类又依赖了Flight类，Force类，Shot类
 
 
 
-  <link rel="canonical" href="http://igo9go.github.io/2016/08/22/loc容器/"/>
+  <link rel="canonical" href="http://igo9go.github.io/2016/09/06/增加PHP程序配置文件实践/"/>
 
-  <title> loc容器 | justudy </title>
+  <title> 增加PHP程序配置文件实践 | justudy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +275,7 @@ superman类又依赖了Flight类，Force类，Shot类
             
             
               
-                loc容器
+                增加PHP程序配置文件实践
               
             
           </h1>
@@ -311,8 +287,8 @@ superman类又依赖了Flight类，Force类，Shot类
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T12:51:35+08:00" content="2016-08-22">
-              2016-08-22
+            <time itemprop="dateCreated" datetime="2016-09-06T14:39:29+08:00" content="2016-09-06">
+              2016-09-06
             </time>
           </span>
 
@@ -358,47 +334,28 @@ superman类又依赖了Flight类，Force类，Shot类
       
 
       
-        <h1 id="loc容器"><a href="#loc容器" class="headerlink" title="loc容器"></a>loc容器</h1><ol>
-<li>superman类依赖 power类。在superman构造函数new power应用<ul>
-<li>单一的依赖</li>
-</ul>
-</li>
-<li>superman类又依赖了Flight类，Force类，Shot类<ul>
-<li>产生了跟多的依赖</li>
-</ul>
-</li>
-<li>工厂模式，依赖转移！ <ul>
-<li>是由原来对多个外部的依赖变成了对一个 “工厂” 的依赖  <blockquote>
-<p>我们不应该手动在 “超人” 类中固化了他的 “超能力” 初始化的行为，而转由外部负责，由外部创造超能力模组、装置或者芯片等（我们后面统一称为 “模组”），植入超人体内的某一个接口，这个接口是一个既定的，只要这个 “模组” 满足这个接口的装置都可以被超人所利用，可以提升、增加超人的某一种能力。这种由外部负责其依赖需求的行为，我们可以称其为 “控制反转（IoC）”。<br>`class SuperModuleFactory<br>{<br>public function makeModule($moduleName, $options)<br>{<br>  switch ($moduleName) {</p>
-<pre><code>case &apos;Fight&apos;:     return new Fight($options[0], $options[1]);
-case &apos;Force&apos;:     return new Force($options[0]);
-case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]);
-// case &apos;more&apos;: .......
-// case &apos;and more&apos;: .......
-// case &apos;and more&apos;: .......
-// case &apos;oh no! its too many!&apos;: .......
-</code></pre><p>  }<br>}<br>}`</p>
-</blockquote>
-</li>
-<li>工厂模式的缺点就是：接口未知（即没有一个很好的契约模型，关于这个我马上会有解释）、产生对象类型单一。</li>
-</ul>
-</li>
-<li><p>为了规范每一个超能力，需要定义一个接口加以规范， 每一个类继承接口</p>
-<ul>
-<li>因为一个 对象（object） 本身是由他的模板或者原型 —— 类 （class） ，经过实例化后产生的一个具体事物，而有时候，实现统一种方法且不同功能（或特性）的时候，会存在很多的类（class），这时候就需要有一个契约，让大家编写出可以被随时替换却不会产生影响的接口。</li>
-<li><p>只要不是由内部生产（比如初始化、构造函数 __construct 中通过工厂方法、自行手动 new 的），而是由外部以参数或其他形式注入的，都属于 依赖注入（DI）<br><code>// 超能力模组
- $superModule = new XPower;
- // 初始化一个超人，并注入一个超能力模组依赖
- $superMan = new Superman($superModule);</code></p>
-</li>
-<li><p>手动的创建了一个超能力模组、手动的创建超人并注入了刚刚创建超能力模组</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>一个类需要绑定、注册至容器中，才能被“制造”。</p>
-<p>个类要被容器所能够提取，必须要先注册至这个容器。既然 laravel 称这个容器叫做服务容器，那么我们需要某个服务，就得先注册、绑定这个服务到容器，那么提供服务并绑定服务至容器的东西，就是 服务提供者</p>
-<p>服务提供者 将需要的类 注册绑定到服务容器<br>服务提供者主要分为两个部分，register（注册） 和 boot（引导、初始化），具体参考文档。register 负责进行向容器注册“脚本”，但要注意注册部分不要有对未知事物的依赖，如果有，就要移步至 boot 部分。</p>
+        <p>#增加PHP程序配置文件实践</p>
+<p>###最原始的方式</p>
+<p>写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。</p>
+<p>线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配置文件中可以通过fastcgi_param指令来给PHP传递变量</p>
+<p>fastcgi_param  DB_HOST  “192.168.1.1”;</p>
+<p>这样就可以在PHP代码里通过$_SERVER[‘DB_HOST’]来获取到对应的值。</p>
+<p>所以开发环境和线上环境只要配好nginx的配置，就可以实现不改代码执行程序了。</p>
+<p>更进一步，可以传递一个标示当前环境的变量，例如</p>
+<p>fastcgi_param  CODE_ENV  “production”;</p>
+<p>然后在程序里可以根据$_SERVER[‘CODE_ENV’]的不同来执行一些不同的逻辑（比如开发环境会打印所有错误信息而线上环境不显示）</p>
+<p>###这样完美了吗？</p>
+<p>并没有，在实际应用中发现有两个问题：1.如果这个PHP程序不仅仅提供web服务，还提供了cli工具（例如数据库升级脚本），这个时候nginx传递的变量就过不来了。2.貌似不支持传递数组变量。</p>
+<p>解决思路</p>
+<p>要同时支持web和cli，通过nginx配置传变量已经行不通了，那能不能走php自己的配置呢？</p>
+<p>于是在php.ini的末尾加上如下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[userconf]</div><div class="line">userconf.db_host=127.0.0.1</div><div class="line">userconf.db_name=test</div></pre></td></tr></table></figure></p>
+<p>重启php-fpm之后，发现通过ini_get(‘userconf.db_host’)取到的数据是空，于是详细查看了php的文档，发现对于自定义的配置项，需要通过get_cfg_var()函数来获得。经过测试，在web和cli模式下，通过get_cfg_var(‘userconf.db_host’)可以拿到正确的值。</p>
+<p>再优化</p>
+<p>但这个方案还是有弊端：1.修改配置需要重启php-fpm。2.虽然php.ini里面支持数组的数据，但是还是不够灵活，最好是能直接用php配置。</p>
+<p>所以我们可以在php.ini里面只配置一个配置目录的路径，这个目录下放置各个程序的配置文件，php程序先从php.ini获取到这个目录的路径，再从这个目录下读取php格式的配置文件。示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$path = get_cfg_var(&apos;userconf.dir&apos;);</div><div class="line">$conf = include($path . &apos;/test.php&apos;);</div></pre></td></tr></table></figure>
+<p>这样配置文件是每次访问都会重新读取，变更时不需要重启php-fpm；而且不同的站点只要选择不同的配置文件名，就可以在一台服务器上共存。</p>
+<p>但这样还是有一个问题没有解决，那就是无法在同一台服务器上部署两个相同的站点，不过这个场景也不多，不解决也没关系。</p>
 
       
     </div>
@@ -447,7 +404,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
       
         <div class="post-tags">
           
-            <a href="/tags/loc容器/" rel="tag">#loc容器</a>
+            <a href="/tags/php配置/" rel="tag">#php配置</a>
           
         </div>
       
@@ -456,17 +413,13 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/22/youzan/" rel="next" title="youzan">
-                <i class="fa fa-chevron-left"></i> youzan
+              <a href="/2016/09/06/expect脚本使用/" rel="next" title="expect脚本使用">
+                <i class="fa fa-chevron-left"></i> expect脚本使用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/23/PHP各版本特性/" rel="prev" title="PHP各版本特性">
-                PHP各版本特性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -622,7 +575,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#loc容器"><span class="nav-number">1.</span> <span class="nav-text">loc容器</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
