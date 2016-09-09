@@ -96,7 +96,7 @@
 首先要安装 expect 脚本程序，不过在 Macbook 中自带了。比如 CentOS 的机器，可以使用 yum install expect 的方式安装。
 ###简单模式
 12345678#!/usr/bin/expect -f   set timeout 5   spawn ssh root@192.168.0.1expect &amp;quot;*assword*">
-<meta property="og:updated_time" content="2016-09-06T06:23:37.000Z">
+<meta property="og:updated_time" content="2016-09-09T02:17:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="expect脚本使用">
 <meta name="twitter:description" content="#expect自动化远程登录脚本
@@ -343,7 +343,28 @@
 <p>###使用变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/expect -f</div><div class="line">set port 22</div><div class="line">set user root</div><div class="line">set host 192.168.0.12</div><div class="line">set password root</div><div class="line">set timeout -1</div><div class="line">spawn ssh -D $port $user@$host &quot;ifconfig&quot;</div><div class="line">expect &#123;  </div><div class="line">&quot;*yes/no&quot; &#123; send &quot;yes\r&quot;; exp_continue&#125;  </div><div class="line">&quot;*assword:&quot; &#123; send &quot;$password\r&quot; &#125;  </div><div class="line">&#125;  </div><div class="line">expect &quot;*#*&quot;  </div><div class="line">send &quot;ifconfig &gt; /home/cfg \r&quot;</div><div class="line">send &quot;exit\r&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>###通过读取配置文件获取变量：</p>
 <p>配置文件<br>192.168.0.1 root<br>192.168.0.2 root</p>
-<p>登陆脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/expect -f</div><div class="line">set f [open ./ip r]  </div><div class="line">while &#123; [gets $f line ]&gt;=0 &#125; &#123;       </div><div class="line">set ip [lindex $line 0]     </div><div class="line">set pwd [lindex $line 1]</div><div class="line">spawn ssh $ip</div><div class="line">expect  &quot;*password:&quot; &#123; send &quot;$pwd\r&quot; &#125;</div><div class="line">expect &quot;#&quot;</div><div class="line">send &quot;ifconfig \r&quot;</div><div class="line">send &quot;exit\r&quot;</div><div class="line">interact</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>登陆脚本</p>
+<pre>
+#!/usr/bin/expect -f
+set f [open ./ip r]  
+while { [gets $f line ]>=0 } {       
+set ip [lindex $line 0]     
+set pwd [lindex $line 1]
+spawn ssh $ip
+expect  "*password:" { send "$pwd\r" }
+expect "#"
+send "ifconfig \r"
+send "exit\r"
+interact
+}
+</pre>
+
+
+
+
+
+
+
 
       
     </div>
@@ -479,7 +500,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -487,7 +508,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -496,7 +517,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

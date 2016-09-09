@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="php配置," />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -84,25 +84,43 @@
 
 
 
-<meta name="description" content="#增加PHP程序配置文件实践
-###最原始的方式
-写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。
-线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配">
+<meta name="description" content="INNODB关键特性INNODB关键特性包括如下：
+
+插入缓冲（insert buff）
+两次写（double write）
+自适应哈希索引（Adaptive Hash Index）
+异步IO(Async IO)
+刷新邻接页（Flush Neighbor Page）
+
+插入缓冲插入缓冲带来了性能上的提升
+两次写带给innodb数据页的可靠性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="增加PHP程序配置文件实践">
-<meta property="og:url" content="http://igo9go.github.io/2016/09/06/增加PHP程序配置文件实践/index.html">
+<meta property="og:title" content="INNODB关键特性">
+<meta property="og:url" content="http://igo9go.github.io/2016/09/08/INNODB关键特性/index.html">
 <meta property="og:site_name" content="justudy">
-<meta property="og:description" content="#增加PHP程序配置文件实践
-###最原始的方式
-写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。
-线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配">
-<meta property="og:updated_time" content="2016-09-06T06:42:08.000Z">
+<meta property="og:description" content="INNODB关键特性INNODB关键特性包括如下：
+
+插入缓冲（insert buff）
+两次写（double write）
+自适应哈希索引（Adaptive Hash Index）
+异步IO(Async IO)
+刷新邻接页（Flush Neighbor Page）
+
+插入缓冲插入缓冲带来了性能上的提升
+两次写带给innodb数据页的可靠性">
+<meta property="og:updated_time" content="2016-09-08T09:22:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="增加PHP程序配置文件实践">
-<meta name="twitter:description" content="#增加PHP程序配置文件实践
-###最原始的方式
-写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。
-线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配">
+<meta name="twitter:title" content="INNODB关键特性">
+<meta name="twitter:description" content="INNODB关键特性INNODB关键特性包括如下：
+
+插入缓冲（insert buff）
+两次写（double write）
+自适应哈希索引（Adaptive Hash Index）
+异步IO(Async IO)
+刷新邻接页（Flush Neighbor Page）
+
+插入缓冲插入缓冲带来了性能上的提升
+两次写带给innodb数据页的可靠性">
 
 
 
@@ -123,9 +141,9 @@
 
 
 
-  <link rel="canonical" href="http://igo9go.github.io/2016/09/06/增加PHP程序配置文件实践/"/>
+  <link rel="canonical" href="http://igo9go.github.io/2016/09/08/INNODB关键特性/"/>
 
-  <title> 增加PHP程序配置文件实践 | justudy </title>
+  <title> INNODB关键特性 | justudy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -275,7 +293,7 @@
             
             
               
-                增加PHP程序配置文件实践
+                INNODB关键特性
               
             
           </h1>
@@ -287,8 +305,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-06T14:39:29+08:00" content="2016-09-06">
-              2016-09-06
+            <time itemprop="dateCreated" datetime="2016-09-08T16:17:54+08:00" content="2016-09-08">
+              2016-09-08
             </time>
           </span>
 
@@ -301,8 +319,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -334,28 +352,16 @@
       
 
       
-        <p>#增加PHP程序配置文件实践</p>
-<p>###最原始的方式</p>
-<p>写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。</p>
-<p>线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配置文件中可以通过fastcgi_param指令来给PHP传递变量</p>
-<p>fastcgi_param  DB_HOST  “192.168.1.1”;</p>
-<p>这样就可以在PHP代码里通过$_SERVER[‘DB_HOST’]来获取到对应的值。</p>
-<p>所以开发环境和线上环境只要配好nginx的配置，就可以实现不改代码执行程序了。</p>
-<p>更进一步，可以传递一个标示当前环境的变量，例如</p>
-<p>fastcgi_param  CODE_ENV  “production”;</p>
-<p>然后在程序里可以根据$_SERVER[‘CODE_ENV’]的不同来执行一些不同的逻辑（比如开发环境会打印所有错误信息而线上环境不显示）</p>
-<p>###这样完美了吗？</p>
-<p>并没有，在实际应用中发现有两个问题：1.如果这个PHP程序不仅仅提供web服务，还提供了cli工具（例如数据库升级脚本），这个时候nginx传递的变量就过不来了。2.貌似不支持传递数组变量。</p>
-<p>解决思路</p>
-<p>要同时支持web和cli，通过nginx配置传变量已经行不通了，那能不能走php自己的配置呢？</p>
-<p>于是在php.ini的末尾加上如下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[userconf]</div><div class="line">userconf.db_host=127.0.0.1</div><div class="line">userconf.db_name=test</div></pre></td></tr></table></figure></p>
-<p>重启php-fpm之后，发现通过ini_get(‘userconf.db_host’)取到的数据是空，于是详细查看了php的文档，发现对于自定义的配置项，需要通过get_cfg_var()函数来获得。经过测试，在web和cli模式下，通过get_cfg_var(‘userconf.db_host’)可以拿到正确的值。</p>
-<p>再优化</p>
-<p>但这个方案还是有弊端：1.修改配置需要重启php-fpm。2.虽然php.ini里面支持数组的数据，但是还是不够灵活，最好是能直接用php配置。</p>
-<p>所以我们可以在php.ini里面只配置一个配置目录的路径，这个目录下放置各个程序的配置文件，php程序先从php.ini获取到这个目录的路径，再从这个目录下读取php格式的配置文件。示例代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$path = get_cfg_var(&apos;userconf.dir&apos;);</div><div class="line">$conf = include($path . &apos;/test.php&apos;);</div></pre></td></tr></table></figure>
-<p>这样配置文件是每次访问都会重新读取，变更时不需要重启php-fpm；而且不同的站点只要选择不同的配置文件名，就可以在一台服务器上共存。</p>
-<p>但这样还是有一个问题没有解决，那就是无法在同一台服务器上部署两个相同的站点，不过这个场景也不多，不解决也没关系。</p>
+        <h1 id="INNODB关键特性"><a href="#INNODB关键特性" class="headerlink" title="INNODB关键特性"></a>INNODB关键特性</h1><p>INNODB关键特性包括如下：</p>
+<ol>
+<li>插入缓冲（insert buff）</li>
+<li>两次写（double write）</li>
+<li>自适应哈希索引（Adaptive Hash Index）</li>
+<li>异步IO(Async IO)</li>
+<li>刷新邻接页（Flush Neighbor Page）</li>
+</ol>
+<h3 id="插入缓冲"><a href="#插入缓冲" class="headerlink" title="插入缓冲"></a>插入缓冲</h3><p>插入缓冲带来了性能上的提升</p>
+<h3 id="两次写"><a href="#两次写" class="headerlink" title="两次写"></a>两次写</h3><p>带给innodb数据页的可靠性</p>
 
       
     </div>
@@ -404,7 +410,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/php配置/" rel="tag">#php配置</a>
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
           
         </div>
       
@@ -413,16 +419,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/06/expect脚本使用/" rel="next" title="expect脚本使用">
-                <i class="fa fa-chevron-left"></i> expect脚本使用
+              <a href="/2016/09/07/PHP多进程引发的msyql连接数问题/" rel="next" title="PHP多进程引发的msyql连接数问题">
+                <i class="fa fa-chevron-left"></i> PHP多进程引发的msyql连接数问题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/07/PHP多进程引发的msyql连接数问题/" rel="prev" title="PHP多进程引发的msyql连接数问题">
-                PHP多进程引发的msyql连接数问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/09/Mac下使用launchctl创建定时任务/" rel="prev" title="Mac下使用launchctl创建定时任务">
+                Mac下使用launchctl创建定时任务 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -579,7 +585,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#INNODB关键特性"><span class="nav-number">1.</span> <span class="nav-text">INNODB关键特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入缓冲"><span class="nav-number">1.0.1.</span> <span class="nav-text">插入缓冲</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两次写"><span class="nav-number">1.0.2.</span> <span class="nav-text">两次写</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

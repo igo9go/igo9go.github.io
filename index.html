@@ -268,6 +268,385 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/09/Mac下使用launchctl创建定时任务/" itemprop="url">
+                  Mac下使用launchctl创建定时任务
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-09T10:20:58+08:00" content="2016-09-09">
+              2016-09-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MAC/" itemprop="url" rel="index">
+                    <span itemprop="name">MAC</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#Mac下添加定时任务</p>
+<ul>
+<li><p>编写任务脚本</p>
+<blockquote>
+<p>把要执行的任务写好</p>
+</blockquote>
+</li>
+<li><p>编写任务描述文件</p>
+<blockquote>
+<p>mac的任务描述文件是plist格式的。结构如下：</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  </div><div class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;  </div><div class="line">&lt;plist version=&quot;1.0&quot;&gt;  </div><div class="line">  &lt;dict&gt;</div><div class="line">    &lt;!-- 名称，要全局唯一 --&gt;</div><div class="line">    &lt;key&gt;Label&lt;/key&gt;</div><div class="line">    &lt;string&gt;com.uniflor.notifier&lt;/string&gt;</div><div class="line"></div><div class="line">    &lt;!-- 要运行的程序， 如果省略这个选项，会把ProgramArguments的第一个</div><div class="line">    元素作为要运行的程序 --&gt;</div><div class="line">    &lt;key&gt;Program&lt;/key&gt;</div><div class="line">    &lt;string&gt;/Users/uniflor/script.sh&lt;/string&gt;</div><div class="line"></div><div class="line">    &lt;!-- 命令， 第一个为命令，其它为参数--&gt;</div><div class="line">    &lt;key&gt;ProgramArguments&lt;/key&gt;</div><div class="line">    &lt;array&gt;</div><div class="line">      &lt;string&gt;/Users/uniflor/script.sh&lt;/string&gt;</div><div class="line">    &lt;/array&gt;</div><div class="line"></div><div class="line">    &lt;!-- 运行时间 --&gt;</div><div class="line">    &lt;key&gt;StartCalendarInterval&lt;/key&gt;</div><div class="line">    &lt;dict&gt;</div><div class="line"></div><div class="line">      &lt;key&gt;Minute&lt;/key&gt;</div><div class="line">      &lt;integer&gt;30&lt;/integer&gt;</div><div class="line"></div><div class="line">      &lt;key&gt;Hour&lt;/key&gt;</div><div class="line">      &lt;integer&gt;9&lt;/integer&gt;</div><div class="line"></div><div class="line">      &lt;key&gt;Day&lt;/key&gt;</div><div class="line">      &lt;integer&gt;1&lt;/integer&gt;</div><div class="line"></div><div class="line">      &lt;key&gt;Month&lt;/key&gt;</div><div class="line">      &lt;integer&gt;5&lt;/integer&gt;</div><div class="line"></div><div class="line">      &lt;!-- 0和7都指星期天 --&gt;</div><div class="line">      &lt;key&gt;Weekday&lt;/key&gt;</div><div class="line">      &lt;integer&gt;0&lt;/integer&gt;</div><div class="line"></div><div class="line">    &lt;/dict&gt;</div><div class="line"></div><div class="line">    &lt;!-- 运行间隔，与StartCalenderInterval使用其一，单位为秒 --&gt;</div><div class="line">    &lt;key&gt;StartInterval&lt;/key&gt;</div><div class="line">    &lt;integer&gt;30&lt;/integer&gt;</div><div class="line"></div><div class="line">    &lt;!-- 标准输入文件 --&gt;</div><div class="line">    &lt;key&gt;StandardInPath&lt;/key&gt;</div><div class="line">    &lt;string&gt;/Users/uniflor/run-in.log&lt;/string&gt;</div><div class="line"></div><div class="line">    &lt;!-- 标准输出文件 --&gt;</div><div class="line">    &lt;key&gt;StandardOutPath&lt;/key&gt;</div><div class="line">    &lt;string&gt;/Users/uniflor/Bin/run-out.log&lt;/string&gt;</div><div class="line"></div><div class="line">    &lt;!-- 标准错误输出文件 --&gt;</div><div class="line">    &lt;key&gt;StandardErrorPath&lt;/key&gt;</div><div class="line">    &lt;string&gt;/Users/uniflor/Bin/run-err.log&lt;/string&gt;</div><div class="line"></div><div class="line">  &lt;/dict&gt;  </div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>两种指定要执行命令的方法：</p>
+<ul>
+<li><p>使用Program和ProgramArguments</p>
+<p>  Program, 运行命令或要执行文件路径<br>  ProgramArguments, 执行时传入参数</p>
+</li>
+<li><p>只使用ProgramArguments<br>  此时，ProgramArguments的每个参数为要执行的命令或文件路径，其它参数为传入参数</p>
+</li>
+</ul>
+</li>
+<li><p>两种设置执行时间的方法：</p>
+<ul>
+<li><p>StartCalendarInterval<br>  使用元素Minute, Hour, Day, Month, Weekday两指定执行时间，如：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;StartCalendarInterval&lt;/key&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">  &lt;key&gt;Minute&lt;/key&gt;</div><div class="line">  &lt;integer&gt;30&lt;/integer&gt;</div><div class="line">  &lt;key&gt;Hour&lt;/key&gt;</div><div class="line">  &lt;integer&gt;9&lt;/integer&gt;</div><div class="line">&lt;/dict&gt;</div></pre></td></tr></table></figure>
+<p>  每天的9:30执行</p>
+</li>
+<li><p>StartInterval<br>设置执行的时间间隔，单位为秒</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;StartInterval&lt;/key&gt;</div><div class="line">&lt;integer&gt;3600&lt;/integer&gt;</div></pre></td></tr></table></figure>
+<p>每小时执行一次</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>使用launchctl加载plist<br>任务描述文件写好后，怎么使用它呢？可以使用launchctl工具，添加任务到launchd。</p>
+<p>系统定义了几个位置来存放任务列表</p>
+<p>~/Library/LaunchAgents 由用户自己定义的任务项<br>/Library/LaunchAgents 由管理员为用户定义的任务项<br>/Library/LaunchDaemons 由管理员定义的守护进程任务项<br>/System/Library/LaunchAgents 由Mac OS X为用户定义的任务项<br>/System/Library/LaunchDaemons 由Mac OS X定义的守护进程任务项</p>
+<p>为用户定义的任务项，只以用户登陆后才会执行，守护进程任务项无论用户是否登陆都会执行<br>根据添加的任务类型，把它拷贝到相应的目录，通过launchctl来加载：<br>建议添加到~/Library/LaunchAgents<br>添加 launchctl load ~/Library/LaunchAgents/com.test.plist</p>
+<p>移除 launchctl unload ~/Library/LaunchAgents/com.test.plist<br>查看 launchctl list</p>
+<p>最后这些如果你觉得麻烦，下面推荐你一款好用的工具“launchcontrol”<br>可以新增编辑任务，右边各种选项很方便。<br><img src="http://oc9orpe44.bkt.clouddn.com/16-9-9/14273694.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/08/INNODB关键特性/" itemprop="url">
+                  INNODB关键特性
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-08T16:17:54+08:00" content="2016-09-08">
+              2016-09-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="INNODB关键特性"><a href="#INNODB关键特性" class="headerlink" title="INNODB关键特性"></a>INNODB关键特性</h1><p>INNODB关键特性包括如下：</p>
+<ol>
+<li>插入缓冲（insert buff）</li>
+<li>两次写（double write）</li>
+<li>自适应哈希索引（Adaptive Hash Index）</li>
+<li>异步IO(Async IO)</li>
+<li>刷新邻接页（Flush Neighbor Page）</li>
+</ol>
+<h3 id="插入缓冲"><a href="#插入缓冲" class="headerlink" title="插入缓冲"></a>插入缓冲</h3><p>插入缓冲带来了性能上的提升</p>
+<h3 id="两次写"><a href="#两次写" class="headerlink" title="两次写"></a>两次写</h3><p>带给innodb数据页的可靠性</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/07/PHP多进程引发的msyql连接数问题/" itemprop="url">
+                  PHP多进程引发的msyql连接数问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T14:45:47+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="PHP多进程引发的msyql连接数问题"><a href="#PHP多进程引发的msyql连接数问题" class="headerlink" title="PHP多进程引发的msyql连接数问题"></a>PHP多进程引发的msyql连接数问题</h1><p> 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)</div><div class="line">Packets out of order. Expected 1 received 108. Packet size=7102829</div></pre></td></tr></table></figure></p>
+<p>发现应该是短时间大量的链接写入数据库.导致数据库无法响应</p>
+<p>show variables like ‘%max_connections%’;<br>show variables like ‘%back_log%’;</p>
+<p>修改my.ini 配置 back_log<br>back_log = 104<br>MySQL能有的连接数量。当主要MySQL线程在一个很短时间内得到非常多的连接请求，这就起作用，<br>然后主线程花些时间(尽管很短)检查连接并且启动一个新线程。back_log值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。<br>如果期望在一个短时间内有很多连接，你需要增加它。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，<br>以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。<br>另外，这值（back_log）限于您的操作系统对到来的TCP/IP连接的侦听队列的大小。<br>你的操作系统在这个队列大小上有它自己的限制（可以检查你的OS文档找出这个变量的最大值），试图设定back_log高于你的操作系统的限制将是无效的。</p>
+<p> 在linux中，/proc/sys/net/core/somaxconn这个参数，linux中内核的一个不错的参数somaxconn<br>　　看下其解析：<br>　　对于一个TCP连接，Server与Client需要通过三次握手来建立网络连接.当三次握手成功后,<br>　　我们可以看到端口的状态由LISTEN转变为ESTABLISHED,接着这条链路上就可以开始传送数据了.<br>　　每一个处于监听(Listen)状态的端口,都有自己的监听队列.监听队列的长度,与如下两方面有关:<br>　　- somaxconn参数.<br>　　- 使用该端口的程序中listen()函数.<br>　　1. 关于somaxconn参数:<br>　　定义了系统中每一个端口最大的监听队列的长度,这是个全局的参数,默认值为128,具体信息为:<br>　　Purpose:<br>　　Specifies the maximum listen backlog.<br>　　Values:<br>　　Default: 128 connections<br>　　Range: 0 to MAXSHORT<br>　　Type: Connect<br>　　Diagnosis:<br>　　N/A<br>　　Tuning<br>　　Increase this parameter on busy Web servers to handle peak connection rates.<br>　　看下FREEBSD的解析：<br>　　限制了接收新 TCP 连接侦听队列的大小。对于一个经常处理新连接的高负载 web服务环境来说，默认的 128 太小了。大多数环境这个值建议增加到 1024 或者更多。 服务进程会自己限制侦听队列的大小(例如 sendmail(8) 或者 Apache)，常常在它们的配置文件中有设置队列大小的选项。大的侦听队列对防止拒绝服务 DoS 攻击也会有所帮助。<br>   我们可以通过，<br>    echo 1000 &gt;/proc/sys/net/core/somaxconn<br>    修改连接数</p>
+<p>Mac 环境修改如下：<br>增加max open files。先查看一下:<br>$ sysctl -a | grep files<br>kern.maxfiles = 12288 kern.maxfilesperproc = 10240</p>
+<p>修改为<br>$ sudo sysctl -w kern.maxfiles=65535 $ sudo sysctl -w kern.maxfilesperproc=65535</p>
+<p>增加 max sockets<br>$ sysctl -a | grep somax</p>
+<p>kern.ipc.somaxconn: 128 $ sudo sysctl -w kern.ipc.somaxconn=2048</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/06/增加PHP程序配置文件实践/" itemprop="url">
                   增加PHP程序配置文件实践
                 </a>
@@ -474,7 +853,28 @@
 <p>###使用变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/expect -f</div><div class="line">set port 22</div><div class="line">set user root</div><div class="line">set host 192.168.0.12</div><div class="line">set password root</div><div class="line">set timeout -1</div><div class="line">spawn ssh -D $port $user@$host &quot;ifconfig&quot;</div><div class="line">expect &#123;  </div><div class="line">&quot;*yes/no&quot; &#123; send &quot;yes\r&quot;; exp_continue&#125;  </div><div class="line">&quot;*assword:&quot; &#123; send &quot;$password\r&quot; &#125;  </div><div class="line">&#125;  </div><div class="line">expect &quot;*#*&quot;  </div><div class="line">send &quot;ifconfig &gt; /home/cfg \r&quot;</div><div class="line">send &quot;exit\r&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>###通过读取配置文件获取变量：</p>
 <p>配置文件<br>192.168.0.1 root<br>192.168.0.2 root</p>
-<p>登陆脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/expect -f</div><div class="line">set f [open ./ip r]  </div><div class="line">while &#123; [gets $f line ]&gt;=0 &#125; &#123;       </div><div class="line">set ip [lindex $line 0]     </div><div class="line">set pwd [lindex $line 1]</div><div class="line">spawn ssh $ip</div><div class="line">expect  &quot;*password:&quot; &#123; send &quot;$pwd\r&quot; &#125;</div><div class="line">expect &quot;#&quot;</div><div class="line">send &quot;ifconfig \r&quot;</div><div class="line">send &quot;exit\r&quot;</div><div class="line">interact</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>登陆脚本</p>
+<pre>
+#!/usr/bin/expect -f
+set f [open ./ip r]  
+while { [gets $f line ]>=0 } {       
+set ip [lindex $line 0]     
+set pwd [lindex $line 1]
+spawn ssh $ip
+expect  "*password:" { send "$pwd\r" }
+expect "#"
+send "ifconfig \r"
+send "exit\r"
+interact
+}
+</pre>
+
+
+
+
+
+
+
 
           
         
@@ -1326,385 +1726,6 @@ use SayWorld;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/loc容器/" itemprop="url">
-                  loc容器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T12:51:35+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="loc容器"><a href="#loc容器" class="headerlink" title="loc容器"></a>loc容器</h1><ol>
-<li>superman类依赖 power类。在superman构造函数new power应用<ul>
-<li>单一的依赖</li>
-</ul>
-</li>
-<li>superman类又依赖了Flight类，Force类，Shot类<ul>
-<li>产生了跟多的依赖</li>
-</ul>
-</li>
-<li>工厂模式，依赖转移！ <ul>
-<li>是由原来对多个外部的依赖变成了对一个 “工厂” 的依赖  <blockquote>
-<p>我们不应该手动在 “超人” 类中固化了他的 “超能力” 初始化的行为，而转由外部负责，由外部创造超能力模组、装置或者芯片等（我们后面统一称为 “模组”），植入超人体内的某一个接口，这个接口是一个既定的，只要这个 “模组” 满足这个接口的装置都可以被超人所利用，可以提升、增加超人的某一种能力。这种由外部负责其依赖需求的行为，我们可以称其为 “控制反转（IoC）”。<br>`class SuperModuleFactory<br>{<br>public function makeModule($moduleName, $options)<br>{<br>  switch ($moduleName) {</p>
-<pre><code>case &apos;Fight&apos;:     return new Fight($options[0], $options[1]);
-case &apos;Force&apos;:     return new Force($options[0]);
-case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]);
-// case &apos;more&apos;: .......
-// case &apos;and more&apos;: .......
-// case &apos;and more&apos;: .......
-// case &apos;oh no! its too many!&apos;: .......
-</code></pre><p>  }<br>}<br>}`</p>
-</blockquote>
-</li>
-<li>工厂模式的缺点就是：接口未知（即没有一个很好的契约模型，关于这个我马上会有解释）、产生对象类型单一。</li>
-</ul>
-</li>
-<li><p>为了规范每一个超能力，需要定义一个接口加以规范， 每一个类继承接口</p>
-<ul>
-<li>因为一个 对象（object） 本身是由他的模板或者原型 —— 类 （class） ，经过实例化后产生的一个具体事物，而有时候，实现统一种方法且不同功能（或特性）的时候，会存在很多的类（class），这时候就需要有一个契约，让大家编写出可以被随时替换却不会产生影响的接口。</li>
-<li><p>只要不是由内部生产（比如初始化、构造函数 __construct 中通过工厂方法、自行手动 new 的），而是由外部以参数或其他形式注入的，都属于 依赖注入（DI）<br><code>// 超能力模组
- $superModule = new XPower;
- // 初始化一个超人，并注入一个超能力模组依赖
- $superMan = new Superman($superModule);</code></p>
-</li>
-<li><p>手动的创建了一个超能力模组、手动的创建超人并注入了刚刚创建超能力模组</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>一个类需要绑定、注册至容器中，才能被“制造”。</p>
-<p>个类要被容器所能够提取，必须要先注册至这个容器。既然 laravel 称这个容器叫做服务容器，那么我们需要某个服务，就得先注册、绑定这个服务到容器，那么提供服务并绑定服务至容器的东西，就是 服务提供者</p>
-<p>服务提供者 将需要的类 注册绑定到服务容器<br>服务提供者主要分为两个部分，register（注册） 和 boot（引导、初始化），具体参考文档。register 负责进行向容器注册“脚本”，但要注意注册部分不要有对未知事物的依赖，如果有，就要移步至 boot 部分。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/youzan/" itemprop="url">
-                  youzan
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T11:19:42+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/个人感悟/" itemprop="url" rel="index">
-                    <span itemprop="name">个人感悟</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="在有赞的半年–规范"><a href="#在有赞的半年–规范" class="headerlink" title="在有赞的半年–规范"></a>在有赞的半年–规范</h1><p>从今年的年初第二天上班加入了有赞的大家庭，到七月十五号辞职，虽然时间不长，但是这段时间自身成长了很多。为此我想回顾一下这几个月来的成长经历<br>有赞在大学里就听过这家公司，那时候还叫口袋通，只知道是在手机开店的工具，最后慢慢了解这是阿里团队出来的，看到招聘信息什么的全员配备macbook，感觉很是高大上对于还未踏入职场我来说。到大四下学期也曾投过有赞的简历，那时候可能因为简历没什么内容，自然也就石沉大海了，最终进了同花顺，在同花顺工作了一年，感觉每天都是在重复造轮子，没什么技术上的提升，之后投了有赞的简历，最后也是收到了有赞的offer,在15年过年前辞去了同花顺的工作。然后在过年春节放假回来加入了有赞。<br>刚进有赞就开始了新人班的培训，这大概是有赞的一大特色，每个新入职的小伙伴都会接受一次新人班培训，主要是公司的几个合伙人讲讲公司的企业文化啊，业务发展，产品方向，未来战略等等，当然在这期间还要开一家有赞的店铺，熟悉业务嘛。为期二周的新人培训我收获最多了是认识了一堆优秀的人，我是我们小组最小的，其他大多都是工作四五年有着牛逼的经历的人。有日本归国的ios开发，有从阿里出来的PHP开发十年经验的,有厉害的产品设计师，有浙大毕业的测试工程师，反正各个在我看来都是牛逼哄哄的，于是自己也默默地对自己说等我到他么那个年龄一定要比他们更牛X。<br> 新人培训完了还有二天的户外拓展，对于初入职场的我来说是第一次参加这种活动，很多看似不可能完成的任务，最终都能完成。转变思维，挑战自己，终将能够达到目标。<br>在有赞主要负责商家版后台相关的开发，包括店铺的一些设置，商品的一些调整，以及服务市场的功能模块的开发等。在这里学习最多的就是规范，代码规范，开发流程规范等。<br>使用gitflow协作开发，一开始接触git对很多命令原理都不熟悉，师兄推荐我用sourcetree,git的GUi操作界面，但是有时不太理解其中的原理总会在代码合并上传的是否出一些错误，最后主管叫我使用命令行，不要再使用操作界面，然后我就默默练git的命令行，慢慢的就熟悉掌握了很多命令，这些绝对是使用图像界面学不到的。其实打心里还是很佩服哪些使用命令行的人，尤其使用vi作为编辑器的小伙伴。<br>代码的规范也是团队一直强调的，最重要的环节就是codereview，我想每一个有理想的团队都应该去做codereview，这非常有助于团队的代码质量的提升，让别人发现你代码的不规范的地方，逻辑不合理的地方。在你的代码上线前经过团队的codereview后，bug出现的概念也会大大降低。<br>项目开发的规范主要取决于项目的管理，有赞有一只研发效率团队负责公司整体的项目开发进度控制，项目立项，PM，每日站会，看板，燃尽图,这些保障了项目如期上线。确实很多东西只有规范起来，才能有序高效的进行，不然一团乱麻，很难达到理想的状态。<br>有你有赞！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/myhexin/" itemprop="url">
-                  myhexin
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T11:19:31+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/个人感悟/" itemprop="url" rel="index">
-                    <span itemprop="name">个人感悟</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#在同花顺的一年–基础的成长<br>进入同花顺也是机缘巧合吧，本来之前还对这家公司充满了不信任。不过不可否认，在同花顺将近一年的时间里技术上的成长很大很大。<br>在我找实习的那段时间，经常能看到各个网站同花顺的招聘，那时候根本不了解这家公司，对什么上市也没概念，感觉这家公司就是天天叫人去面试，就如外面的培训机构一样感觉不靠谱，所以我从来不接受同花顺的面试邀请。在一次我下午到文一路面试结束后，同花顺的hr给我打电话叫我去面试，记得已经下午五点了，打开地图一看挺近的，就抱着了解了解的态度去看看了。二个人出来问了一通，面试完了也没啥感觉。第二天一早就接到同花顺hr（婷姐）给我打电话通知我实习面试通过了，然后告诉我实习一天80快，中餐补助8块钱，我当时是有每月三千的薪资的，一想我就拒绝不打算去，然后婷姐跟我说这边技术氛围好，学习成大大，等转正以后工资都是六七千的，最后我也就答应去了。<br>在同花顺我所在的网站部，主要有二个团队，一个是负责圈子，社交SNS这类网站的，还有一个就是我所在的团队主要负责F10，个股，新闻资讯，行情接口等项目。刚过去是先做了一星期的练习题，而后通过了一星期的试用，就开始让我做数据报表，这是一个挤压很久没有专门的人去做的一个项目，大概做了一个多月的报表，报表现在看来并不难，可那时候对我还没有多少实战经验来说的已经是一头雾水，不过好在天资聪慧，哈哈，很快掌握了其中的奥妙，他们使用的是ZEND框架精简后的叫light框架。之后就是导师叫我和另外一个师兄一起做F10项目了…</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1750,7 +1771,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1758,7 +1779,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1767,7 +1788,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
