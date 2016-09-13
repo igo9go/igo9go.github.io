@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ssh," />
 
 
 
@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="PHP多进程引发的msyql连接数问题 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错 12 PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)Packets out of order. Expected 1 received 108. Packet size=71">
+<meta name="description" content="#配置ssh密钥认证自动登录
+###在客户端来看，SSH提供两种级别的安全验证。
+
+在本地机器创建公钥ssh-keygen -t rsa -C  &amp;#39;your email@domain.com&amp;#39;-t 指定密钥类型，默认即 rsa ，可以省略-C 设置注释文字，比如你的邮箱
+将公钥复制到ssh服务器 将前一步骤生成的公钥~/id_rsa.pub文件，复制到ssh服务器对应用户下的~/.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP多进程引发的msyql连接数问题">
-<meta property="og:url" content="http://igo9go.github.io/2016/09/07/PHP多进程引发的msyql连接数问题/index.html">
+<meta property="og:title" content="配置ssh密钥认证自动登录">
+<meta property="og:url" content="http://igo9go.github.io/2016/09/13/配置ssh密钥认证自动登录/index.html">
 <meta property="og:site_name" content="justudy">
-<meta property="og:description" content="PHP多进程引发的msyql连接数问题 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错 12 PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)Packets out of order. Expected 1 received 108. Packet size=71">
-<meta property="og:updated_time" content="2016-09-07T14:21:59.000Z">
+<meta property="og:description" content="#配置ssh密钥认证自动登录
+###在客户端来看，SSH提供两种级别的安全验证。
+
+在本地机器创建公钥ssh-keygen -t rsa -C  &amp;#39;your email@domain.com&amp;#39;-t 指定密钥类型，默认即 rsa ，可以省略-C 设置注释文字，比如你的邮箱
+将公钥复制到ssh服务器 将前一步骤生成的公钥~/id_rsa.pub文件，复制到ssh服务器对应用户下的~/.">
+<meta property="og:updated_time" content="2016-09-13T08:25:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP多进程引发的msyql连接数问题">
-<meta name="twitter:description" content="PHP多进程引发的msyql连接数问题 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错 12 PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)Packets out of order. Expected 1 received 108. Packet size=71">
+<meta name="twitter:title" content="配置ssh密钥认证自动登录">
+<meta name="twitter:description" content="#配置ssh密钥认证自动登录
+###在客户端来看，SSH提供两种级别的安全验证。
+
+在本地机器创建公钥ssh-keygen -t rsa -C  &amp;#39;your email@domain.com&amp;#39;-t 指定密钥类型，默认即 rsa ，可以省略-C 设置注释文字，比如你的邮箱
+将公钥复制到ssh服务器 将前一步骤生成的公钥~/id_rsa.pub文件，复制到ssh服务器对应用户下的~/.">
 
 
 
@@ -114,9 +126,9 @@
 
 
 
-  <link rel="canonical" href="http://igo9go.github.io/2016/09/07/PHP多进程引发的msyql连接数问题/"/>
+  <link rel="canonical" href="http://igo9go.github.io/2016/09/13/配置ssh密钥认证自动登录/"/>
 
-  <title> PHP多进程引发的msyql连接数问题 | justudy </title>
+  <title> 配置ssh密钥认证自动登录 | justudy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +278,7 @@
             
             
               
-                PHP多进程引发的msyql连接数问题
+                配置ssh密钥认证自动登录
               
             
           </h1>
@@ -278,11 +290,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T14:45:47+08:00" content="2016-09-07">
-              2016-09-07
+            <time itemprop="dateCreated" datetime="2016-09-13T09:04:08+08:00" content="2016-09-13">
+              2016-09-13
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -306,15 +337,25 @@
       
 
       
-        <h1 id="PHP多进程引发的msyql连接数问题"><a href="#PHP多进程引发的msyql连接数问题" class="headerlink" title="PHP多进程引发的msyql连接数问题"></a>PHP多进程引发的msyql连接数问题</h1><p> 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)</div><div class="line">Packets out of order. Expected 1 received 108. Packet size=7102829</div></pre></td></tr></table></figure></p>
-<p>发现应该是短时间大量的链接写入数据库.导致数据库无法响应</p>
-<p>show variables like ‘%max_connections%’;<br>show variables like ‘%back_log%’;</p>
-<p>修改my.ini 配置 back_log<br>back_log = 104<br>MySQL能有的连接数量。当主要MySQL线程在一个很短时间内得到非常多的连接请求，这就起作用，<br>然后主线程花些时间(尽管很短)检查连接并且启动一个新线程。back_log值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。<br>如果期望在一个短时间内有很多连接，你需要增加它。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，<br>以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。<br>另外，这值（back_log）限于您的操作系统对到来的TCP/IP连接的侦听队列的大小。<br>你的操作系统在这个队列大小上有它自己的限制（可以检查你的OS文档找出这个变量的最大值），试图设定back_log高于你的操作系统的限制将是无效的。</p>
-<p> 在linux中，/proc/sys/net/core/somaxconn这个参数，linux中内核的一个不错的参数somaxconn<br>　　看下其解析：<br>　　对于一个TCP连接，Server与Client需要通过三次握手来建立网络连接.当三次握手成功后,<br>　　我们可以看到端口的状态由LISTEN转变为ESTABLISHED,接着这条链路上就可以开始传送数据了.<br>　　每一个处于监听(Listen)状态的端口,都有自己的监听队列.监听队列的长度,与如下两方面有关:<br>　　- somaxconn参数.<br>　　- 使用该端口的程序中listen()函数.<br>　　1. 关于somaxconn参数:<br>　　定义了系统中每一个端口最大的监听队列的长度,这是个全局的参数,默认值为128,具体信息为:<br>　　Purpose:<br>　　Specifies the maximum listen backlog.<br>　　Values:<br>　　Default: 128 connections<br>　　Range: 0 to MAXSHORT<br>　　Type: Connect<br>　　Diagnosis:<br>　　N/A<br>　　Tuning<br>　　Increase this parameter on busy Web servers to handle peak connection rates.<br>　　看下FREEBSD的解析：<br>　　限制了接收新 TCP 连接侦听队列的大小。对于一个经常处理新连接的高负载 web服务环境来说，默认的 128 太小了。大多数环境这个值建议增加到 1024 或者更多。 服务进程会自己限制侦听队列的大小(例如 sendmail(8) 或者 Apache)，常常在它们的配置文件中有设置队列大小的选项。大的侦听队列对防止拒绝服务 DoS 攻击也会有所帮助。<br>   我们可以通过，<br>    echo 1000 &gt;/proc/sys/net/core/somaxconn<br>    修改连接数</p>
-<p>Mac 环境修改如下：<br>增加max open files。先查看一下:<br>$ sysctl -a | grep files<br>kern.maxfiles = 12288 kern.maxfilesperproc = 10240</p>
-<p>修改为<br>$ sudo sysctl -w kern.maxfiles=65535 $ sudo sysctl -w kern.maxfilesperproc=65535</p>
-<p>增加 max sockets<br>$ sysctl -a | grep somax</p>
-<p>kern.ipc.somaxconn: 128 $ sudo sysctl -w kern.ipc.somaxconn=2048</p>
+        <p>#配置ssh密钥认证自动登录</p>
+<p>###在客户端来看，SSH提供两种级别的安全验证。</p>
+<ol>
+<li>在本地机器创建公钥<br><code>ssh-keygen -t rsa -C  &#39;your email@domain.com&#39;</code><br>-t 指定密钥类型，默认即 rsa ，可以省略<br>-C 设置注释文字，比如你的邮箱</li>
+<li><p>将公钥复制到ssh服务器<br> 将前一步骤生成的公钥~/id_rsa.pub文件，复制到ssh服务器对应用户下的~/.ssh/authorized_keys文件,可以有多种方式，这里只介绍常用的三种。</p>
+<ul>
+<li><p>[适用于osx系统]使用ssh-copy-id-for-OSX工具将公钥复制至ssh服务器</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">brew install ssh-copy-id</div><div class="line"></div><div class="line">ssh-copy-id username@hostname  #将username和hostname替换为你的ssh服务器用户名和IP</div></pre></td></tr></table></figure>
+</li>
+<li><p>当ssh服务器username用户目录下尚未有.ssh目录时使用此方式<br>  <code>cat ~/.ssh/id_rsa.pub | ssh username@hostname &quot;mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys&quot;</code></p>
+</li>
+<li>通用方式  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">scp ~/.ssh/id_rsa.pub username@hostname:~/ #将公钥文件复制至ssh服务器</div><div class="line">ssh username@hostname #使用用户名和密码方式登录至ssh服务器</div><div class="line">mkdir .ssh  #若.ssh目录已存在，可省略此步</div><div class="line">cat id_rsa.pub &gt;&gt; .ssh/authorized_keys  #将公钥文件id_rsa.pub文件内容追加到     authorized_keys文件</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>快捷登录<br> 完成以上步骤后，即可使用以下命令直接登录ssh服务器<br> <code>ssh username@hostname #将username替换为你的ssh服务器用户名，hostname替换为服务器的ip</code><br> 如果你本地终端使用的是zsh，那就太简单不过了，直接给zsh添加一条别名</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">echo &quot;alias ssh-to-username=&apos;ssh username@hostname&apos;&quot; &gt;&gt; ~/.zshrc #将username和        hostname替换为你的服务器信息</div><div class="line">source ~/.zshrc   #重新加载更改后的zshrc文件</div><div class="line">ssh-to-username   #使用别名，一条命令即可登录你的ssh服务器</div></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
     </div>
@@ -361,21 +402,27 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/ssh/" rel="tag">#ssh</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/06/增加PHP程序配置文件实践/" rel="next" title="增加PHP程序配置文件实践">
-                <i class="fa fa-chevron-left"></i> 增加PHP程序配置文件实践
+              <a href="/2016/09/09/Mac下使用launchctl创建定时任务/" rel="next" title="Mac下使用launchctl创建定时任务">
+                <i class="fa fa-chevron-left"></i> Mac下使用launchctl创建定时任务
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/08/INNODB关键特性/" rel="prev" title="INNODB关键特性">
-                INNODB关键特性 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/13/ssh服务/" rel="prev" title="ssh服务">
+                ssh服务 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,7 +579,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP多进程引发的msyql连接数问题"><span class="nav-number">1.</span> <span class="nav-text">PHP多进程引发的msyql连接数问题</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

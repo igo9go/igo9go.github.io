@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ssh," />
 
 
 
@@ -84,16 +84,40 @@
 
 
 
-<meta name="description" content="PHP多进程引发的msyql连接数问题 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错 12 PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)Packets out of order. Expected 1 received 108. Packet size=71">
+<meta name="description" content="概述 SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议，利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH是Secure Shell的缩写，是建立在应用层和传输层基础上的安全协议。
+SSH服务的功能
+SSH可有效地提供防止DNS欺骗以及IP欺骗
+压缩传输数据
+SSH提供了多种传输方式
+SSH构建Socket5代理
+
+
+SSH常用配置 linux系统，SSH配置文件在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP多进程引发的msyql连接数问题">
-<meta property="og:url" content="http://igo9go.github.io/2016/09/07/PHP多进程引发的msyql连接数问题/index.html">
+<meta property="og:title" content="ssh服务">
+<meta property="og:url" content="http://igo9go.github.io/2016/09/13/ssh服务/index.html">
 <meta property="og:site_name" content="justudy">
-<meta property="og:description" content="PHP多进程引发的msyql连接数问题 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错 12 PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)Packets out of order. Expected 1 received 108. Packet size=71">
-<meta property="og:updated_time" content="2016-09-07T14:21:59.000Z">
+<meta property="og:description" content="概述 SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议，利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH是Secure Shell的缩写，是建立在应用层和传输层基础上的安全协议。
+SSH服务的功能
+SSH可有效地提供防止DNS欺骗以及IP欺骗
+压缩传输数据
+SSH提供了多种传输方式
+SSH构建Socket5代理
+
+
+SSH常用配置 linux系统，SSH配置文件在">
+<meta property="og:updated_time" content="2016-09-13T08:32:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP多进程引发的msyql连接数问题">
-<meta name="twitter:description" content="PHP多进程引发的msyql连接数问题 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错 12 PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)Packets out of order. Expected 1 received 108. Packet size=71">
+<meta name="twitter:title" content="ssh服务">
+<meta name="twitter:description" content="概述 SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议，利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH是Secure Shell的缩写，是建立在应用层和传输层基础上的安全协议。
+SSH服务的功能
+SSH可有效地提供防止DNS欺骗以及IP欺骗
+压缩传输数据
+SSH提供了多种传输方式
+SSH构建Socket5代理
+
+
+SSH常用配置 linux系统，SSH配置文件在">
 
 
 
@@ -114,9 +138,9 @@
 
 
 
-  <link rel="canonical" href="http://igo9go.github.io/2016/09/07/PHP多进程引发的msyql连接数问题/"/>
+  <link rel="canonical" href="http://igo9go.github.io/2016/09/13/ssh服务/"/>
 
-  <title> PHP多进程引发的msyql连接数问题 | justudy </title>
+  <title> ssh服务 | justudy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +290,7 @@
             
             
               
-                PHP多进程引发的msyql连接数问题
+                ssh服务
               
             
           </h1>
@@ -278,11 +302,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T14:45:47+08:00" content="2016-09-07">
-              2016-09-07
+            <time itemprop="dateCreated" datetime="2016-09-13T09:14:49+08:00" content="2016-09-13">
+              2016-09-13
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -306,15 +349,40 @@
       
 
       
-        <h1 id="PHP多进程引发的msyql连接数问题"><a href="#PHP多进程引发的msyql连接数问题" class="headerlink" title="PHP多进程引发的msyql连接数问题"></a>PHP多进程引发的msyql连接数问题</h1><p> 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)</div><div class="line">Packets out of order. Expected 1 received 108. Packet size=7102829</div></pre></td></tr></table></figure></p>
-<p>发现应该是短时间大量的链接写入数据库.导致数据库无法响应</p>
-<p>show variables like ‘%max_connections%’;<br>show variables like ‘%back_log%’;</p>
-<p>修改my.ini 配置 back_log<br>back_log = 104<br>MySQL能有的连接数量。当主要MySQL线程在一个很短时间内得到非常多的连接请求，这就起作用，<br>然后主线程花些时间(尽管很短)检查连接并且启动一个新线程。back_log值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。<br>如果期望在一个短时间内有很多连接，你需要增加它。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，<br>以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。<br>另外，这值（back_log）限于您的操作系统对到来的TCP/IP连接的侦听队列的大小。<br>你的操作系统在这个队列大小上有它自己的限制（可以检查你的OS文档找出这个变量的最大值），试图设定back_log高于你的操作系统的限制将是无效的。</p>
-<p> 在linux中，/proc/sys/net/core/somaxconn这个参数，linux中内核的一个不错的参数somaxconn<br>　　看下其解析：<br>　　对于一个TCP连接，Server与Client需要通过三次握手来建立网络连接.当三次握手成功后,<br>　　我们可以看到端口的状态由LISTEN转变为ESTABLISHED,接着这条链路上就可以开始传送数据了.<br>　　每一个处于监听(Listen)状态的端口,都有自己的监听队列.监听队列的长度,与如下两方面有关:<br>　　- somaxconn参数.<br>　　- 使用该端口的程序中listen()函数.<br>　　1. 关于somaxconn参数:<br>　　定义了系统中每一个端口最大的监听队列的长度,这是个全局的参数,默认值为128,具体信息为:<br>　　Purpose:<br>　　Specifies the maximum listen backlog.<br>　　Values:<br>　　Default: 128 connections<br>　　Range: 0 to MAXSHORT<br>　　Type: Connect<br>　　Diagnosis:<br>　　N/A<br>　　Tuning<br>　　Increase this parameter on busy Web servers to handle peak connection rates.<br>　　看下FREEBSD的解析：<br>　　限制了接收新 TCP 连接侦听队列的大小。对于一个经常处理新连接的高负载 web服务环境来说，默认的 128 太小了。大多数环境这个值建议增加到 1024 或者更多。 服务进程会自己限制侦听队列的大小(例如 sendmail(8) 或者 Apache)，常常在它们的配置文件中有设置队列大小的选项。大的侦听队列对防止拒绝服务 DoS 攻击也会有所帮助。<br>   我们可以通过，<br>    echo 1000 &gt;/proc/sys/net/core/somaxconn<br>    修改连接数</p>
-<p>Mac 环境修改如下：<br>增加max open files。先查看一下:<br>$ sysctl -a | grep files<br>kern.maxfiles = 12288 kern.maxfilesperproc = 10240</p>
-<p>修改为<br>$ sudo sysctl -w kern.maxfiles=65535 $ sudo sysctl -w kern.maxfilesperproc=65535</p>
-<p>增加 max sockets<br>$ sysctl -a | grep somax</p>
-<p>kern.ipc.somaxconn: 128 $ sudo sysctl -w kern.ipc.somaxconn=2048</p>
+        <ol>
+<li>概述<br> SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议，利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH是Secure Shell的缩写，是建立在应用层和传输层基础上的安全协议。</li>
+<li>SSH服务的功能<ul>
+<li>SSH可有效地提供防止DNS欺骗以及IP欺骗</li>
+<li>压缩传输数据</li>
+<li>SSH提供了多种传输方式</li>
+<li>SSH构建Socket5代理</li>
+</ul>
+</li>
+<li><p>SSH常用配置<br> linux系统，SSH配置文件在 /etc/ssh/sshd_config</p>
+<p> 常用配置说明:</p>
+<p> Port     22    #SSH端口设置，这里默认使用的是22端口<br> Protocol    2，1        #选择SSH协议版本<br> ListenAddress     0.0.0.0        #监听的网卡IP<br> PermitRootLogin     no    #是否允许root登入，默认是允许的<br> PasswordAuthentication yes #是否开启密码验证<br> PermitEmptyPasswords no    #是否允许密码为空<br> PrintMotd no                    #登入后是否显示一些信息，如上次登入时间及地点等。<br> PrintLastLog yes            #显示上次登入的信息<br> KeepAlive yes                    #发送KeepAlive信息给客户端<br> MaxStartups 10                #允许尚未登入的联机画面数<br> DenyUsers <em>                    #禁止用户登录，</em>表示所有用户<br> AllowUsers *                    #允许用户登录</p>
+</li>
+<li><p>SSH的认证方式与访问策略</p>
+<ul>
+<li>基于口令的认证方式<br>  ssh options username@hostname <code>command</code></li>
+<li>基于秘钥的认证方式<br>  ssh-keygen 生成公钥与秘钥，讲客户端公钥加入到服务端<br>  cat id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys<br>  ssh 目录权限700  authorized_keys权限600</li>
+<li><p>限制用户连接<br>  可以修改ssh服务端配置文件 /etc/ssh/sshd_config</p>
+<p>  DenyUsers         test    #禁止test用户登入<br>  AllowUsers         test    #允许test用户登入<br>  DenyGroups        test    #禁止test群组登入<br>  AllowUsers         test    #允许test群组登入</p>
+</li>
+<li><p>限制ip连接SSH<br>  基于IP地址的访问策略有两种方式实现：</p>
+<ul>
+<li><p>iptables防火墙</p>
+<p>  iptables  -A INPUT -p tcp –dport 22 -s 192.168.0.10/32 -j ACCEPT<br>  iptables  -A INPUT -p tcp –dport 22 -j DROP</p>
+</li>
+<li><p>TCP Wrappers</p>
+<p>  /etc/hosts.allow<br>  sshd:192.168.0.10/255.255.255.255</p>
+<p>  /etc/hosts.deny<br>  sshd:ALL 或  sshd:ALL EXCEPT 192.168.0.10<br>  TCP Wrappers只支持长格式掩码，不能用192.168.0.0/24</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -361,22 +429,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/ssh/" rel="tag">#ssh</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/06/增加PHP程序配置文件实践/" rel="next" title="增加PHP程序配置文件实践">
-                <i class="fa fa-chevron-left"></i> 增加PHP程序配置文件实践
+              <a href="/2016/09/13/配置ssh密钥认证自动登录/" rel="next" title="配置ssh密钥认证自动登录">
+                <i class="fa fa-chevron-left"></i> 配置ssh密钥认证自动登录
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/08/INNODB关键特性/" rel="prev" title="INNODB关键特性">
-                INNODB关键特性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -532,7 +602,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP多进程引发的msyql连接数问题"><span class="nav-number">1.</span> <span class="nav-text">PHP多进程引发的msyql连接数问题</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
