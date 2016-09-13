@@ -5,7 +5,8 @@ tags:
 categories:
 ---
 
-利用pcntl_fork实现PHP多进程代码如下
+利用pcntl_fork实现PHP多进程代码如下:
+
 ```
 function runTasks($tasks)
 	{
@@ -43,4 +44,26 @@ function runTasks($tasks)
 	}
 ```
 
+部署脚本：
+
+```
+#!/bin/bash
+source /etc/profile
+source /root/.bash_profile
+
+nowDate=`date +%Y%m%d`
+cd /yourpath
+
+nowTime=`date +%M`
+//每小时一次 01分的时候
+if [ "$nowTime" -eq "01" ]
+then
+	ProcessCount=`ps -ef|grep "tash.php" |grep -v "grep"|wc -l`
+	if [ $ProcessCount -lt 1 ]
+		then
+		nohup /usr/bin/php test.php >> /dev/null &
+		echo "Create test.php run!"
+	fi
+fi
+```
 
