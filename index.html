@@ -268,6 +268,103 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/13/PHP多进程实践/" itemprop="url">
+                  PHP多进程实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-13T16:39:04+08:00" content="2016-09-13">
+              2016-09-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>利用pcntl_fork实现PHP多进程代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">function runTasks($tasks)</div><div class="line">	&#123;</div><div class="line">		$linenum = 2;</div><div class="line">		$count = count($tasks);</div><div class="line">		if ($count &gt; 30) &#123;</div><div class="line">			$linenum = (int)($count/15);</div><div class="line">		&#125;</div><div class="line">		//任务分割</div><div class="line">		$chunks = array_chunk($tasks, $linenum);</div><div class="line">		$procs = array();</div><div class="line">		foreach ($chunks as $chunk) &#123;</div><div class="line">			$pid = pcntl_fork();</div><div class="line">			if ($pid == -1) &#123;</div><div class="line">				die(&apos;could not fork&apos;);</div><div class="line">			&#125; else if ($pid) &#123;</div><div class="line">				$procs[] = $pid;</div><div class="line">			&#125; else &#123;</div><div class="line">				foreach ($chunk as $line) &#123;</div><div class="line">					system(&apos;php &apos;. $line);</div><div class="line">					echo $line.&quot; done!\n&quot;;</div><div class="line">				&#125;</div><div class="line">				exit(0);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		foreach ($procs as $proc) &#123;</div><div class="line">			pcntl_waitpid($proc, $status);</div><div class="line">		&#125;</div><div class="line">		unset($pid);</div><div class="line">		$pid = NULL;</div><div class="line">		unset($procs);</div><div class="line">		$procs = NULL;</div><div class="line">		unset($chunks);</div><div class="line">		$chunks = NULL;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>部署脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">source /etc/profile</div><div class="line">source /root/.bash_profile</div><div class="line"></div><div class="line">nowDate=`date +%Y%m%d`</div><div class="line">cd /yourpath</div><div class="line"></div><div class="line">nowTime=`date +%M`</div><div class="line">//每小时一次 01分的时候</div><div class="line">if [ &quot;$nowTime&quot; -eq &quot;01&quot; ]</div><div class="line">then</div><div class="line">	ProcessCount=`ps -ef|grep &quot;tash.php&quot; |grep -v &quot;grep&quot;|wc -l`</div><div class="line">	if [ $ProcessCount -lt 1 ]</div><div class="line">		then</div><div class="line">		nohup /usr/bin/php test.php &gt;&gt; /dev/null &amp;</div><div class="line">		echo &quot;Create test.php run!&quot;</div><div class="line">	fi</div><div class="line">fi</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/13/ssh服务/" itemprop="url">
                   ssh服务
                 </a>
@@ -1463,124 +1560,6 @@ interact
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/26/redis/" itemprop="url">
-                  redis
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-26T15:53:32+08:00" content="2016-08-26">
-              2016-08-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h1><h3 id="KEY"><a href="#KEY" class="headerlink" title="KEY"></a>KEY</h3><ol>
-<li>DEL key [key …]<blockquote>
-<p>删除给定的一个或多个 key 。</p>
-</blockquote>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1626,7 +1605,7 @@ interact
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
