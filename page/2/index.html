@@ -268,6 +268,289 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/05/mysql索引/" itemprop="url">
+                  mysql-index
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T20:49:22+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mysql索引"><a href="#mysql索引" class="headerlink" title="mysql索引"></a>mysql索引</h1><p><img src="http://oc9orpe44.bkt.clouddn.com/16-9-9/21794403.jpg" alt=""></p>
+<p>聚簇索引的叶节点就是数据节点，而非聚簇索引的页节点仍然是索引检点，并保留一个链接指向对应数据块。</p>
+<ul>
+<li>myisan引擎</li>
+</ul>
+<p>MyISAM 为非聚簇索引（NonCluster Index）<br>MyISAM中索引检索的算法为首先按照B+Tree搜索算法搜索索引，如果指定的Key存在，则取出其data域的值，然后以data域的值为地址，读取相应数据记录</p>
+<ul>
+<li>innodb引擎</li>
+</ul>
+<p>InnoDB的主索引是聚簇索引（Cluster Index），数据和Key本身都会存储在B+Tree的叶子节点<br>InnoDB的辅助索引本身主要是记录主索引的Key，最终查找数据还是从辅助索引再去主索引查找</p>
+<p>纯读模式下，性能对比MyISAM引擎会稍有影响（辅助索引需要3次io，主索引需要3次io，MyISAM可能只需要4次IO）</p>
+<p><strong>如果非特殊原因，强烈建议使用  InnoDB（XtraDB）存储引擎！</strong><br>原因：（对比MyISAM or Aria）<br>更稳定可靠的数据存储和索引结构；整个存储引擎设计思想更可靠先进，接近于Oracle、SQL Server级别的数据库（有兴趣可以去阅读源码了解细节）<br>更多可靠特性支持，比如事务、外键等支持（支付等关键领域事务非常重要）<br>运行更稳定，不论读写数据的量级，都能够保证比较稳定的性能响应<br>更好地崩溃恢复机制，特别利用一些Percona的一些工具，更有效运维InnoDB<br>MySQL 5.5+ 对比 MySQL 5.1.x 总体功能和性能提升太多，改进太多</p>
+<p>###mysql优化</p>
+<ul>
+<li><p>硬件</p>
+<ol>
+<li>CPU：使用多核CPU，能够充分发挥新版MySQL多核下的效果，建议4核以上</li>
+<li>内存：如果数据量比较大，建议使用不要低于20G内存的服务器；</li>
+<li><p>硬盘：如果条件允许使用SSD硬盘，TPS能够达到2000或者更高；SAS硬盘的TPS极限也可能在1000左右，对性能的提升是非常显著；为保证数据可靠性，建议适合的RAID方案</p>
+</li>
+<li><p>网卡：保证网卡不是瓶颈，保证足够的吞吐量，建议千兆网卡</p>
+</li>
+</ol>
+</li>
+<li>linux服务器关键配置<ol>
+<li>文件打开描述符：/etc/security/limits.conf 中 nofile、/proc/sys/fs/nr_open</li>
+<li>可分配文件句柄数：/etc/sysctl.conf 中 fs.file-max、/proc/sys/fs/file-max</li>
+<li>进程数：/etc/security/limits.conf 中的 nproc</li>
+<li>线程数：/proc/sys/kernel/thread-max</li>
+<li>其他TCP和网络相关选项：/etc/sysctl.conf</li>
+<li>这些都可以通过ulimit 或 直接调整 /proc 中变量进行临时修改</li>
+<li>建议关闭SWAP分区（内存要足够大才行）；如果数据太大，为了防止夯死主机，可以设置2G左右的SWAP分区</li>
+</ol>
+</li>
+<li>msyql 配置等</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/05/mysql优化/" itemprop="url">
+                  mysql优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T20:03:47+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MYSQL优化"><a href="#MYSQL优化" class="headerlink" title="MYSQL优化"></a>MYSQL优化</h1><p>[<a href="http://d.pr/i/HJUk][1" target="_blank" rel="external">http://d.pr/i/HJUk][1</a>]</p>
+<ol>
+<li>为查询缓存优化你的查询</li>
+<li>EXPLAIN你的SELECT查询。根据结果给出分析相应的查询优化</li>
+<li>当只要一行数据时使用LIMIT1，MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查少下一条符合记录的数据。</li>
+<li>为搜索字段建索引</li>
+<li>在Join表的时候使用相当类型的数据，并将其索引</li>
+<li>千万不要ORDER BY RAND()</li>
+<li>避免 SELECT * 8. 永远为每张表设置一个ID，为数据库里的每张表都设置一个ID做为其主键，而且最好的是一个INT型的（推荐使用UNSIGNED），并设置上自动增加的AUTO-INCREMENT标志</li>
+<li>使用ENUM而不是VARCHAR</li>
+<li>从PROCEDURE ANALYSE()取得建议</li>
+<li>尽可能的使用NOT NULL</li>
+<li>Prepared Statements，Prepared Statements可以检查一些你绑定好的变量，这样可以保护你的程序不会受到“SQL注入式”攻击。当然，你也可以手动地检查你的这些变量，然而，手动的检查容易出问题，而且很经常会被程序员忘了。当我们使用一些framework或是ORM的时候，这样的问题会好一些。</li>
+<li>无缓冲的查询，mysql-unbuffered-query()发送一个SQL语句到MySQL而并不像mysql-query()一样去自动fethch和缓存结果。这会相当节约很多可观的内存，尤其是那些会产生大量结果的查询语句，并且，你不需要等到所有的结果都返回，只需要第一行数据返回的时候，你就可以开始马上开始工作于查询结果了。</li>
+<li>把IP地址存成UNSIGNED INT</li>
+<li>固定长度的表会更快，固定长度的表会提高性能，因为MySQL搜寻得会更快一些，因为这些固定的长度是很容易计算下一个数据的偏移量的，所以读取的自然也会很快。而如果字段不是定长的，那么，每一次要找下一条的话，需要程序找到主键。可能会浪费空间</li>
+<li>垂直分割，“垂直分割”是一种把数据库中的表按列变成几张表的方法，这样可以降低表的复杂度和字段的数目，从而达到优化的目的。</li>
+<li>拆分大的DELETE或INSERT语句，这两个操作是会锁表的，表一锁住了，别的操作都进不来了。</li>
+<li>越小的列会越快</li>
+<li>选择正确的存储引擎</li>
+<li>用一个对象关系映射器（Object Relational Mapper）</li>
+<li>小心“永久链接” mysql-pconnect()</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/26/redis/" itemprop="url">
                   redis
                 </a>
@@ -1313,7 +1596,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1330,7 +1613,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
