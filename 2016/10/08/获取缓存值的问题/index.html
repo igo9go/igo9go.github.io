@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="cache," />
 
 
 
@@ -84,15 +84,24 @@
 
 
 
-<meta name="description" content="个人站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="justudy">
-<meta property="og:url" content="http://igo9go.github.io/tags/mysql/index.html">
+<meta name="description" content="一般我们获取缓存值得姿势是这样的：1234567Object result = cache.get(CACHE_KEY);if(result == null)&amp;#123;    //重新获取缓存    result = xxxx(xxx);    cache.put(CACHE_KEY,CACHE_TTL,result); &amp;#125;return result;
+
+高并发下暴露问题你的程序一直正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取缓存值的问题">
+<meta property="og:url" content="http://igo9go.github.io/2016/10/08/获取缓存值的问题/index.html">
 <meta property="og:site_name" content="justudy">
-<meta property="og:description" content="个人站">
+<meta property="og:description" content="一般我们获取缓存值得姿势是这样的：1234567Object result = cache.get(CACHE_KEY);if(result == null)&amp;#123;    //重新获取缓存    result = xxxx(xxx);    cache.put(CACHE_KEY,CACHE_TTL,result); &amp;#125;return result;
+
+高并发下暴露问题你的程序一直正">
+<meta property="og:image" content="http://igo9go.github.io/images/14758950660632.jpg">
+<meta property="og:updated_time" content="2016-10-08T02:51:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="justudy">
-<meta name="twitter:description" content="个人站">
+<meta name="twitter:title" content="获取缓存值的问题">
+<meta name="twitter:description" content="一般我们获取缓存值得姿势是这样的：1234567Object result = cache.get(CACHE_KEY);if(result == null)&amp;#123;    //重新获取缓存    result = xxxx(xxx);    cache.put(CACHE_KEY,CACHE_TTL,result); &amp;#125;return result;
+
+高并发下暴露问题你的程序一直正">
+<meta name="twitter:image" content="http://igo9go.github.io/images/14758950660632.jpg">
 
 
 
@@ -113,9 +122,9 @@
 
 
 
-  <link rel="canonical" href="http://igo9go.github.io/tags/mysql/"/>
+  <link rel="canonical" href="http://igo9go.github.io/2016/10/08/获取缓存值的问题/"/>
 
-  <title> 标签: mysql | justudy </title>
+  <title> 获取缓存值的问题 | justudy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +145,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,102 +253,175 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        mysql
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/08/INNODB关键特性/" itemprop="url">
-              
-                <span itemprop="name">INNODB关键特性</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-08T16:17:54+08:00"
-              content="2016-09-08" >
-          09-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/05/mysql索引/" itemprop="url">
-              
-                <span itemprop="name">mysql-index</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-05T20:49:22+08:00"
-              content="2016-09-05" >
-          09-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/05/mysql优化/" itemprop="url">
-              
-                <span itemprop="name">mysql优化</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-05T20:03:47+08:00"
-              content="2016-09-05" >
-          09-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                获取缓存值的问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T10:47:53+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/cache/" itemprop="url" rel="index">
+                    <span itemprop="name">cache</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一般我们获取缓存值得姿势是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Object result = cache.get(CACHE_KEY);</div><div class="line">if(result == null)&#123;</div><div class="line">    //重新获取缓存</div><div class="line">    result = xxxx(xxx);</div><div class="line">    cache.put(CACHE_KEY,CACHE_TTL,result); </div><div class="line">&#125;</div><div class="line">return result;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>高并发下暴露问题<br>你的程序一直正常运行，直到某一日，运营的同事急匆匆的跑来找到你，你的程序挂了，可能是XXX在大量抓你的数据。我们重启了应用也没用，没几秒程序又挂了。</p>
+</blockquote>
+<p>机智的你通过简单的排查，得出数据库顶不住访问压力，顺利的将锅甩走。 不过仔细一想，我们不是有缓存吗，怎么缓存没起作用？ 查看下缓存，一切正常，也没发现什么问题啊？</p>
+<p>进过各种debug、查日志、测试环境模拟，花了整整一下午，你终于找到罪魁祸首，原因很简单，正是我们没有使用正确的姿势使用缓存<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; 问题分析</div><div class="line"></div><div class="line">这里我们排除熔断、限流等外部措施，单纯讨论缓存问题。</div><div class="line"></div><div class="line">假设你的应用需要访问某个资源（数据库/服务），其能支撑的最大QPS为100。为了提高应用QPS，我们加入缓存，并将缓存过期时间设置为X秒。此时，有个200并发的请求访问我们系统中某一路径，这些请求对应的都是同一个缓存KEY，但是这个键已经过期了。此时，则会瞬间产生200个线程访问下游资源，下游资源便有可能瞬间就奔溃了</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>guava是一个google发布的一个开源java工具库，其中guava cacha提供了一个轻量级的本地缓存实现机制，通过guava cache，我们可以轻松实现本地缓存。其中，guava cacha对缓存不存在或者过期情况下，获取缓存值得过程称之为Loading。<br><img src="images/14758950660632.jpg" alt=""><br>不过，这样虽然只有一个线程去执行loading动作，但是其他线程会等待loading线程接受后才能一同返回接口。此时，guava cache通过刷新策略，直接返回旧的缓存值，并生成一个线程去处理loading，处理完成后更新缓存值和过期时间。guava 称之为异步模式。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/14709726873530.jpg" alt="周强 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>多谢打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/14709726873530.jpg" alt="周强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/14709726873530.jpg" alt="周强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cache/" rel="tag">#cache</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/27/为你总结一些php系统类函数/" rel="next" title="为你总结一些php系统类函数">
+                <i class="fa fa-chevron-left"></i> 为你总结一些php系统类函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -347,6 +429,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -366,8 +452,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -459,6 +554,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -555,6 +661,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

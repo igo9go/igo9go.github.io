@@ -268,6 +268,287 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/08/获取缓存值的问题/" itemprop="url">
+                  获取缓存值的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T10:47:53+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/cache/" itemprop="url" rel="index">
+                    <span itemprop="name">cache</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一般我们获取缓存值得姿势是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Object result = cache.get(CACHE_KEY);</div><div class="line">if(result == null)&#123;</div><div class="line">    //重新获取缓存</div><div class="line">    result = xxxx(xxx);</div><div class="line">    cache.put(CACHE_KEY,CACHE_TTL,result); </div><div class="line">&#125;</div><div class="line">return result;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>高并发下暴露问题<br>你的程序一直正常运行，直到某一日，运营的同事急匆匆的跑来找到你，你的程序挂了，可能是XXX在大量抓你的数据。我们重启了应用也没用，没几秒程序又挂了。</p>
+</blockquote>
+<p>机智的你通过简单的排查，得出数据库顶不住访问压力，顺利的将锅甩走。 不过仔细一想，我们不是有缓存吗，怎么缓存没起作用？ 查看下缓存，一切正常，也没发现什么问题啊？</p>
+<p>进过各种debug、查日志、测试环境模拟，花了整整一下午，你终于找到罪魁祸首，原因很简单，正是我们没有使用正确的姿势使用缓存<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; 问题分析</div><div class="line"></div><div class="line">这里我们排除熔断、限流等外部措施，单纯讨论缓存问题。</div><div class="line"></div><div class="line">假设你的应用需要访问某个资源（数据库/服务），其能支撑的最大QPS为100。为了提高应用QPS，我们加入缓存，并将缓存过期时间设置为X秒。此时，有个200并发的请求访问我们系统中某一路径，这些请求对应的都是同一个缓存KEY，但是这个键已经过期了。此时，则会瞬间产生200个线程访问下游资源，下游资源便有可能瞬间就奔溃了</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>guava是一个google发布的一个开源java工具库，其中guava cacha提供了一个轻量级的本地缓存实现机制，通过guava cache，我们可以轻松实现本地缓存。其中，guava cacha对缓存不存在或者过期情况下，获取缓存值得过程称之为Loading。<br><img src="images/14758950660632.jpg" alt=""><br>不过，这样虽然只有一个线程去执行loading动作，但是其他线程会等待loading线程接受后才能一同返回接口。此时，guava cache通过刷新策略，直接返回旧的缓存值，并生成一个线程去处理loading，处理完成后更新缓存值和过期时间。guava 称之为异步模式。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/27/为你总结一些php系统类函数/" itemprop="url">
+                  为你总结一些php系统类函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T14:28:21+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#PHP的一些系统函数</p>
+<ol>
+<li>assert函数：检查assertion声明是否错误</li>
+<li>extension_loaded函数：检查PHP扩展是否加载</li>
+<li>get_cfg_var函数：获取PHP配置选项的值</li>
+<li>get_current_user函数：获取当前PHP脚本的所有者的名称</li>
+<li>get_defined_constants函数：返回一个包含PHP预定义常量信息的数组</li>
+<li>get_extension_funcs函数：返回一个包含指定模块中的所有函数名称的数组</li>
+<li>get_include_path函数：返回当前配置的文件包含路径的信息</li>
+<li>get_included_files函数：返回一个关于文件包含信息的数组</li>
+<li>get_loaded_extensions函数：返回一个包含所有装载模块信息的数组</li>
+<li>get_magic_quotes_gpc函数：获取magic_quotes_gpc的状态信息</li>
+<li>get_magic_quotes_runtime函数：获取magic<em>quotes</em> runtime的状态信息</li>
+<li>get_required_files函数：返回一个关于文件包含信息的数组</li>
+<li><p>getenv函数：获取PHP环境变量的值</p>
+</li>
+<li><p>getlastmod函数：获取当前PHP页面文件的最后修改时间</p>
+</li>
+<li>getmygid函数：获取当前PHP脚本页面所有者的GID号码</li>
+<li>getmyinode函数：获取当前PHP脚本页面的INODE号码</li>
+<li>getmypid函数：获取PHP的PID</li>
+<li>getmyuid函数：获取PHP脚本页面所有者的UID号码</li>
+<li>getopt函数：从命令行参数列表获取设置</li>
+<li>getrusage函数：获取当前的资源语法</li>
+<li>ini_get_all函数：获取所有配置选项</li>
+<li>ini_get函数：获取配置选项的值</li>
+<li>memory_get_usage函数：返回PHP脚本占用的内存空间</li>
+<li>php_ini_scanned_files函数：返回配置文件目录下的配置文件列表</li>
+<li>php_logo_guid函数：获取LOGO图片的GUID</li>
+<li>php_sapi_name函数：获取PHP和Web服务器之间的接口类型</li>
+<li>php_uname函数：获取PHP脚本运行的操作系统信息</li>
+<li>phpcredits函数：打印credits列表</li>
+<li>phpinfo函数：输出PHP的信息</li>
+<li>phpversion函数：获取PHP版本</li>
+<li>zend_logo_guid函数：获取ZEND的LOGO图片的GUID</li>
+<li><p>zend_version函数：获取ZEND引擎的版本</p>
+</li>
+<li><p>assert_options函数：设置或者获取不同的声明标记</p>
+</li>
+<li>ini_alter函数：设置PHP配置选项的值</li>
+<li>ini_restore函数：恢复配置选项的值</li>
+<li>ini_set函数：设置PHP配置选项的值</li>
+<li>putenv函数：设置环境变量</li>
+<li>restore_include_path函数：恢复文件包含路径配置信息</li>
+<li>set_include_path函数：设置文件包含路径配置选项</li>
+<li>set_magic_quotes_runtime函数：设置magic_quotes运行时间</li>
+<li>set_time_limit函数：设置最大执行时间</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/27/使用supervisor管理进程/" itemprop="url">
                   使用supervisor管理进程
                 </a>
@@ -1296,288 +1577,11 @@ gunicorn -c gunicorn.py wsgi:app</code></p>
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/06/增加PHP程序配置文件实践/" itemprop="url">
-                  增加PHP程序配置文件实践
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-06T14:39:29+08:00" content="2016-09-06">
-              2016-09-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#增加PHP程序配置文件实践</p>
-<p>###最原始的方式</p>
-<p>写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。</p>
-<p>线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配置文件中可以通过fastcgi_param指令来给PHP传递变量</p>
-<p>fastcgi_param  DB_HOST  “192.168.1.1”;</p>
-<p>这样就可以在PHP代码里通过$_SERVER[‘DB_HOST’]来获取到对应的值。</p>
-<p>所以开发环境和线上环境只要配好nginx的配置，就可以实现不改代码执行程序了。</p>
-<p>更进一步，可以传递一个标示当前环境的变量，例如</p>
-<p>fastcgi_param  CODE_ENV  “production”;</p>
-<p>然后在程序里可以根据$_SERVER[‘CODE_ENV’]的不同来执行一些不同的逻辑（比如开发环境会打印所有错误信息而线上环境不显示）</p>
-<p>###这样完美了吗？</p>
-<p>并没有，在实际应用中发现有两个问题：1.如果这个PHP程序不仅仅提供web服务，还提供了cli工具（例如数据库升级脚本），这个时候nginx传递的变量就过不来了。2.貌似不支持传递数组变量。</p>
-<p>解决思路</p>
-<p>要同时支持web和cli，通过nginx配置传变量已经行不通了，那能不能走php自己的配置呢？</p>
-<p>于是在php.ini的末尾加上如下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[userconf]</div><div class="line">userconf.db_host=127.0.0.1</div><div class="line">userconf.db_name=test</div></pre></td></tr></table></figure></p>
-<p>重启php-fpm之后，发现通过ini_get(‘userconf.db_host’)取到的数据是空，于是详细查看了php的文档，发现对于自定义的配置项，需要通过get_cfg_var()函数来获得。经过测试，在web和cli模式下，通过get_cfg_var(‘userconf.db_host’)可以拿到正确的值。</p>
-<p>再优化</p>
-<p>但这个方案还是有弊端：1.修改配置需要重启php-fpm。2.虽然php.ini里面支持数组的数据，但是还是不够灵活，最好是能直接用php配置。</p>
-<p>所以我们可以在php.ini里面只配置一个配置目录的路径，这个目录下放置各个程序的配置文件，php程序先从php.ini获取到这个目录的路径，再从这个目录下读取php格式的配置文件。示例代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$path = get_cfg_var(&apos;userconf.dir&apos;);</div><div class="line">$conf = include($path . &apos;/test.php&apos;);</div></pre></td></tr></table></figure>
-<p>这样配置文件是每次访问都会重新读取，变更时不需要重启php-fpm；而且不同的站点只要选择不同的配置文件名，就可以在一台服务器上共存。</p>
-<p>但这样还是有一个问题没有解决，那就是无法在同一台服务器上部署两个相同的站点，不过这个场景也不多，不解决也没关系。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/06/expect脚本使用/" itemprop="url">
-                  expect脚本使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-06T14:12:09+08:00" content="2016-09-06">
-              2016-09-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#expect自动化远程登录脚本</p>
-<p>首先要安装 expect 脚本程序，不过在 Macbook 中自带了。比如 CentOS 的机器，可以使用 yum install expect 的方式安装。</p>
-<p>###简单模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/expect -f   </div><div class="line">set timeout 5   </div><div class="line">spawn ssh root@192.168.0.1</div><div class="line">expect &quot;*assword*&quot;   </div><div class="line">send &quot;root\r&quot;   </div><div class="line">expect &quot;#&quot;   </div><div class="line">send &quot;ifconfig \r&quot;   </div><div class="line">expect eof</div></pre></td></tr></table></figure>
-<p>spawn: 启动新的进程<br>expect:从进程接受字符串<br>send：用于向进程发送字符串<br>interact:容许用户交互</p>
-<p>spawn 后面就是要执行的 shell 命令，expect 是捕获要等待输入的字符，send 是自动输入的内容，注意要 “\r” 表示换行以确认输入。</p>
-<p>###使用变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/expect -f</div><div class="line">set port 22</div><div class="line">set user root</div><div class="line">set host 192.168.0.12</div><div class="line">set password root</div><div class="line">set timeout -1</div><div class="line">spawn ssh -D $port $user@$host &quot;ifconfig&quot;</div><div class="line">expect &#123;  </div><div class="line">&quot;*yes/no&quot; &#123; send &quot;yes\r&quot;; exp_continue&#125;  </div><div class="line">&quot;*assword:&quot; &#123; send &quot;$password\r&quot; &#125;  </div><div class="line">&#125;  </div><div class="line">expect &quot;*#*&quot;  </div><div class="line">send &quot;ifconfig &gt; /home/cfg \r&quot;</div><div class="line">send &quot;exit\r&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>###通过读取配置文件获取变量：</p>
-<p>配置文件<br>192.168.0.1 root<br>192.168.0.2 root</p>
-<p>登陆脚本</p>
-<pre>
-#!/usr/bin/expect -f
-set f [open ./ip r]  
-while { [gets $f line ]>=0 } {       
-set ip [lindex $line 0]     
-set pwd [lindex $line 1]
-spawn ssh $ip
-expect  "*password:" { send "$pwd\r" }
-expect "#"
-send "ifconfig \r"
-send "exit\r"
-interact
-}
-</pre>
-
-
-
-
-
-
-
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1618,7 +1622,7 @@ interact
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1626,7 +1630,7 @@ interact
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1635,7 +1639,7 @@ interact
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
