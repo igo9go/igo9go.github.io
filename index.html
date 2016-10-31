@@ -268,6 +268,286 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/31/编码规范整理/" itemprop="url">
+                  编码规范整理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T12:42:36+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近学习python,由于python的语法十分精简，利用业余时间，争取更深入学习Python。编程语言不是艺术，而是工作或者说是工具，所以整理并遵循一套编码规范是十分必要的。所以根据PEP 8整理了一份。</p>
+<p>PEP8 Python 编码规范</p>
+<p>一 代码编排<br>1 缩进。4个空格的缩进（编辑器都可以完成此功能），不使用Tap，更不能混合使用Tap和空格。<br>2 每行最大长度79，换行可以使用反斜杠，最好使用圆括号。换行点要在操作符的后边敲回车。<br>3 类和top-level函数定义之间空两行；类中的方法定义之间空一行；函数内逻辑无关段落之间空一行；其他地方尽量不要再空行。</p>
+<p>二 文档编排<br>1 模块内容的顺序：模块说明和docstring—import—globals&amp;constants—其他定义。其中import部分，又按标准、三方和自己编写顺序依次排放，之间空一行。<br>2 不要在一句import中多个库，比如import os, sys不推荐。<br>3 如果采用from XX import XX引用库，可以省略‘module.’，都是可能出现命名冲突，这时就要采用import XX。</p>
+<p>三 空格的使用<br>        总体原则，避免不必要的空格。<br>1 各种右括号前不要加空格。<br>2 逗号、冒号、分号前不要加空格。<br>3 函数的左括号前不要加空格。如Func(1)。<br>4 序列的左括号前不要加空格。如list[2]。<br>5 操作符左右各加一个空格，不要为了对齐增加空格。<br>6 函数默认参数使用的赋值符左右省略空格。<br>7 不要将多句语句写在同一行，尽管使用‘；’允许。<br>8 if/for/while语句中，即使执行语句只有一句，也必须另起一行。</p>
+<p>四 注释<br>        总体原则，错误的注释不如没有注释。所以当一段代码发生变化时，第一件事就是要修改注释！<br>        注释必须使用英文，最好是完整的句子，首字母大写，句后要有结束符，结束符后跟两个空格，开始下一句。如果是短语，可以省略结束符。<br>1 块注释，在一段代码前增加的注释。在‘#’后加一空格。段落之间以只有‘#’的行间隔。比如：</p>
+<pre><code># Description : Module config.
+# 
+# Input : None
+#
+# Output : None
+</code></pre><p>2 行注释，在一句代码后加注释。比如：x = x + 1            # Increment x<br>但是这种方式尽量少使用。<br>3 避免无谓的注释。</p>
+<p>五 文档描述<br>1 为所有的共有模块、函数、类、方法写docstrings；非共有的没有必要，但是可以写注释（在def的下一行）。<br>2 如果docstring要换行，参考如下例子,详见PEP 257<br>“””Return a foobang</p>
+<p>Optional plotz says to frobnicate the bizbaz first.</p>
+<p>“””</p>
+<p>六 命名规范<br>        总体原则，新编代码必须按下面命名风格进行，现有库的编码尽量保持风格。<br>1 尽量单独使用小写字母‘l’，大写字母‘O’等容易混淆的字母。<br>2 模块命名尽量短小，使用全部小写的方式，可以使用下划线。<br>3 包命名尽量短小，使用全部小写的方式，不可以使用下划线。<br>4 类的命名使用CapWords的方式，模块内部使用的类采用_CapWords的方式。<br>5 异常命名使用CapWords+Error后缀的方式。<br>6 全局变量尽量只在模块内有效，类似C语言中的static。实现方法有两种，一是<strong>all</strong>机制;二是前缀一个下划线。<br>7 函数命名使用全部小写的方式，可以使用下划线。<br>8 常量命名使用全部大写的方式，可以使用下划线。<br>9 类的属性（方法和变量）命名使用全部小写的方式，可以使用下划线。<br>9 类的属性有3种作用域public、non-public和subclass API，可以理解成C++中的public、private、protected，non-public属性前，前缀一条下划线。<br>11 类的属性若与关键字名字冲突，后缀一下划线，尽量不要使用缩略等其他方式。<br>12 为避免与子类属性命名冲突，在类的一些属性前，前缀两条下划线。比如：类Foo中声明<strong>a,访问时，只能通过Foo._Foo</strong>a，避免歧义。如果子类也叫Foo，那就无能为力了。<br>13 类的方法第一个参数必须是self，而静态方法第一个参数必须是cls。</p>
+<p>七 编码建议<br>1 编码中考虑到其他python实现的效率等问题，比如运算符‘+’在CPython（Python）中效率很高，都是Jython中却非常低，所以应该采用.join()的方式。<br>2 尽可能使用‘is’‘is not’取代‘==’，比如if x is not None 要优于if x。<br>3 使用基于类的异常，每个模块或包都有自己的异常类，此异常类继承自Exception。<br>4 异常中不要使用裸露的except，except后跟具体的exceptions。<br>5 异常中try的代码尽可能少。比如：<br>try:<br>value = collection[key]<br>except KeyError:<br>return key_not_found(key)<br>else:<br>return handle_value(value)<br>要优于<br>try:</p>
+<pre><code># Too broad!
+</code></pre><p>return handle_value(collection[key])<br>except KeyError:</p>
+<pre><code># Will also catch KeyError raised by handle_value()
+</code></pre><p>return key_not_found(key)<br>6 使用startswith() and endswith()代替切片进行序列前缀或后缀的检查。比如：<br>Yes:  if foo.startswith(‘bar’):优于<br>No:  if foo[:3] == ‘bar’:<br>7 使用isinstance()比较对象的类型。比如<br>Yes:  if isinstance(obj, int): 优于<br>No:  if type(obj) is type(1):<br>8 判断序列空或不空，有如下规则<br>Yes:  if not seq:<br>if seq:<br>优于<br>No:  if len(seq)<br>if not len(seq)<br>9 字符串不要以空格收尾。<br>10 二进制数据判断使用 if boolvalue的方式。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/25/golang学习笔记/" itemprop="url">
+                  golang学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-25T10:07:53+08:00" content="2016-10-25">
+              2016-10-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>变量必须预先申明定义，变量会在声明时直接初始化。如果变量没有显式初始化，则被隐式地赋予其类型的零值（zero value），数值类型是0，字符串类型是空字符串””。申明了变量就必须引用</li>
+<li><p>Go语言只有for循环这一种循环语句</p>
+<ol>
+<li><p>普通的循环</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for initialization; condition; post &#123;</div><div class="line">// zero or more statements</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>2. 类似while的循环
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// a traditional &quot;while&quot; loop</div><div class="line">for condition &#123;</div><div class="line">// ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+
+3. 死循环
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// a traditional infinite loop</div><div class="line">for &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+4. for循环的另一种形式, 在某种数据类型的区间（range）上遍历，如字符串或切片
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for _, arg := range os.Args[1:] &#123;</div><div class="line">    s += sep + arg</div><div class="line">    sep = &quot; &quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    每次循环迭代，range产生一对值；索引以及在该索引处的元素值。这个例子不需要索引，但range的语法要求, 要处理元素, 必须处理索引。
+</code></pre><ul>
+<li><p>变量申明</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">s := &quot;&quot;</div><div class="line">var s string</div><div class="line">var s = &quot;&quot;</div><div class="line">var s string = &quot;&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>25个关键字</p>
+<p>  break      default       func     interface   select<br>  case       defer         go       map         struct<br>  chan       else          goto     package     switch<br>  const      fallthrough   if       range       type<br>  continue   for           import   return      var</p>
+</li>
+<li><p>预定义名称</p>
+<p>  内建常量: true false iota nil</p>
+<p>  内建类型: int int8 int16 int32 int64</p>
+<pre><code>uint uint8 uint16 uint32 uint64 uintptr
+float32 float64 complex128 complex64
+bool byte rune string error
+</code></pre><p>  内建函数: make len cap new append copy close delete</p>
+<pre><code>complex real imag
+panic recover
+</code></pre></li>
+<li><p>Go语言主要有四种类型的声明语句：var、const、type和func，分别对应变量、常量、类型和函数实体对象的声明</p>
+</li>
+<li><p>变量申明</p>
+<p>  var 变量名字 类型 = 表达式</p>
+</li>
+</ul>
+<p>如果用“var x int”声明语句声明一个x变量，那么&amp;x表达式（取x变量的内存地址）将产生一个指向该整数变量的指针，指针对应的数据类型是<em>int，指针被称之为“指向int类型的指针”。如果指针名字为p，那么可以说“p指针指向变量x”，或者说“p指针保存了x变量的内存地址”。同时</em>p表达式对应p指针指向的变量的值。一般<em>p表达式读取指针指向的变量的值，这里为int类型的值，同时因为</em>p对应一个变量，所以该表达式也可以出现在赋值语句的左边，表示更新指针所指向的变量的值。</p>
+<ul>
+<li><p>常量声明可以使用iota常量生成器初始化，它用于生成一组以相似规则初始化的常量，但是不用每行都写一遍初始化表达式。在一个const声明语句中，在第一个声明的常量所在的行，iota将会被置为0，然后在每一个有常量声明的行加一</p>
+</li>
+<li><p>r := […]int{99: -1}<br>  定义了一个含有100个元素的数组r，最后一个元素被初始化为-1，其它元素都是用0初始化。+</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/14/国外程序员收集整理的PHP资源大全/" itemprop="url">
                   国外程序员收集整理的PHP资源大全
                 </a>
@@ -1410,292 +1690,6 @@ gunicorn -c gunicorn.py wsgi:app</code></p>
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/13/配置ssh密钥认证自动登录/" itemprop="url">
-                  配置ssh密钥认证自动登录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-13T09:04:08+08:00" content="2016-09-13">
-              2016-09-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#配置ssh密钥认证自动登录</p>
-<p>###在客户端来看，SSH提供两种级别的安全验证。</p>
-<ol>
-<li>在本地机器创建公钥<br><code>ssh-keygen -t rsa -C  &#39;your email@domain.com&#39;</code><br>-t 指定密钥类型，默认即 rsa ，可以省略<br>-C 设置注释文字，比如你的邮箱</li>
-<li><p>将公钥复制到ssh服务器<br> 将前一步骤生成的公钥~/id_rsa.pub文件，复制到ssh服务器对应用户下的~/.ssh/authorized_keys文件,可以有多种方式，这里只介绍常用的三种。</p>
-<ul>
-<li><p>[适用于osx系统]使用ssh-copy-id-for-OSX工具将公钥复制至ssh服务器</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">brew install ssh-copy-id</div><div class="line"></div><div class="line">ssh-copy-id username@hostname  #将username和hostname替换为你的ssh服务器用户名和IP</div></pre></td></tr></table></figure>
-</li>
-<li><p>当ssh服务器username用户目录下尚未有.ssh目录时使用此方式<br>  <code>cat ~/.ssh/id_rsa.pub | ssh username@hostname &quot;mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys&quot;</code></p>
-</li>
-<li>通用方式  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">scp ~/.ssh/id_rsa.pub username@hostname:~/ #将公钥文件复制至ssh服务器</div><div class="line">ssh username@hostname #使用用户名和密码方式登录至ssh服务器</div><div class="line">mkdir .ssh  #若.ssh目录已存在，可省略此步</div><div class="line">cat id_rsa.pub &gt;&gt; .ssh/authorized_keys  #将公钥文件id_rsa.pub文件内容追加到     authorized_keys文件</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>快捷登录<br> 完成以上步骤后，即可使用以下命令直接登录ssh服务器<br> <code>ssh username@hostname #将username替换为你的ssh服务器用户名，hostname替换为服务器的ip</code><br> 如果你本地终端使用的是zsh，那就太简单不过了，直接给zsh添加一条别名</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">echo &quot;alias ssh-to-username=&apos;ssh username@hostname&apos;&quot; &gt;&gt; ~/.zshrc #将username和        hostname替换为你的服务器信息</div><div class="line">source ~/.zshrc   #重新加载更改后的zshrc文件</div><div class="line">ssh-to-username   #使用别名，一条命令即可登录你的ssh服务器</div></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/09/Mac下使用launchctl创建定时任务/" itemprop="url">
-                  Mac下使用launchctl创建定时任务
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-09T10:20:58+08:00" content="2016-09-09">
-              2016-09-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MAC/" itemprop="url" rel="index">
-                    <span itemprop="name">MAC</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#Mac下添加定时任务</p>
-<ul>
-<li><p>编写任务脚本</p>
-<blockquote>
-<p>把要执行的任务写好</p>
-</blockquote>
-</li>
-<li><p>编写任务描述文件</p>
-<blockquote>
-<p>mac的任务描述文件是plist格式的。结构如下：</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  </div><div class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;  </div><div class="line">&lt;plist version=&quot;1.0&quot;&gt;  </div><div class="line">  &lt;dict&gt;</div><div class="line">    &lt;!-- 名称，要全局唯一 --&gt;</div><div class="line">    &lt;key&gt;Label&lt;/key&gt;</div><div class="line">    &lt;string&gt;com.uniflor.notifier&lt;/string&gt;</div><div class="line"></div><div class="line">    &lt;!-- 要运行的程序， 如果省略这个选项，会把ProgramArguments的第一个</div><div class="line">    元素作为要运行的程序 --&gt;</div><div class="line">    &lt;key&gt;Program&lt;/key&gt;</div><div class="line">    &lt;string&gt;/Users/uniflor/script.sh&lt;/string&gt;</div><div class="line"></div><div class="line">    &lt;!-- 命令， 第一个为命令，其它为参数--&gt;</div><div class="line">    &lt;key&gt;ProgramArguments&lt;/key&gt;</div><div class="line">    &lt;array&gt;</div><div class="line">      &lt;string&gt;/Users/uniflor/script.sh&lt;/string&gt;</div><div class="line">    &lt;/array&gt;</div><div class="line"></div><div class="line">    &lt;!-- 运行时间 --&gt;</div><div class="line">    &lt;key&gt;StartCalendarInterval&lt;/key&gt;</div><div class="line">    &lt;dict&gt;</div><div class="line"></div><div class="line">      &lt;key&gt;Minute&lt;/key&gt;</div><div class="line">      &lt;integer&gt;30&lt;/integer&gt;</div><div class="line"></div><div class="line">      &lt;key&gt;Hour&lt;/key&gt;</div><div class="line">      &lt;integer&gt;9&lt;/integer&gt;</div><div class="line"></div><div class="line">      &lt;key&gt;Day&lt;/key&gt;</div><div class="line">      &lt;integer&gt;1&lt;/integer&gt;</div><div class="line"></div><div class="line">      &lt;key&gt;Month&lt;/key&gt;</div><div class="line">      &lt;integer&gt;5&lt;/integer&gt;</div><div class="line"></div><div class="line">      &lt;!-- 0和7都指星期天 --&gt;</div><div class="line">      &lt;key&gt;Weekday&lt;/key&gt;</div><div class="line">      &lt;integer&gt;0&lt;/integer&gt;</div><div class="line"></div><div class="line">    &lt;/dict&gt;</div><div class="line"></div><div class="line">    &lt;!-- 运行间隔，与StartCalenderInterval使用其一，单位为秒 --&gt;</div><div class="line">    &lt;key&gt;StartInterval&lt;/key&gt;</div><div class="line">    &lt;integer&gt;30&lt;/integer&gt;</div><div class="line"></div><div class="line">    &lt;!-- 标准输入文件 --&gt;</div><div class="line">    &lt;key&gt;StandardInPath&lt;/key&gt;</div><div class="line">    &lt;string&gt;/Users/uniflor/run-in.log&lt;/string&gt;</div><div class="line"></div><div class="line">    &lt;!-- 标准输出文件 --&gt;</div><div class="line">    &lt;key&gt;StandardOutPath&lt;/key&gt;</div><div class="line">    &lt;string&gt;/Users/uniflor/Bin/run-out.log&lt;/string&gt;</div><div class="line"></div><div class="line">    &lt;!-- 标准错误输出文件 --&gt;</div><div class="line">    &lt;key&gt;StandardErrorPath&lt;/key&gt;</div><div class="line">    &lt;string&gt;/Users/uniflor/Bin/run-err.log&lt;/string&gt;</div><div class="line"></div><div class="line">  &lt;/dict&gt;  </div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>两种指定要执行命令的方法：</p>
-<ul>
-<li><p>使用Program和ProgramArguments</p>
-<p>  Program, 运行命令或要执行文件路径<br>  ProgramArguments, 执行时传入参数</p>
-</li>
-<li><p>只使用ProgramArguments<br>  此时，ProgramArguments的每个参数为要执行的命令或文件路径，其它参数为传入参数</p>
-</li>
-</ul>
-</li>
-<li><p>两种设置执行时间的方法：</p>
-<ul>
-<li><p>StartCalendarInterval<br>  使用元素Minute, Hour, Day, Month, Weekday两指定执行时间，如：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;StartCalendarInterval&lt;/key&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">  &lt;key&gt;Minute&lt;/key&gt;</div><div class="line">  &lt;integer&gt;30&lt;/integer&gt;</div><div class="line">  &lt;key&gt;Hour&lt;/key&gt;</div><div class="line">  &lt;integer&gt;9&lt;/integer&gt;</div><div class="line">&lt;/dict&gt;</div></pre></td></tr></table></figure>
-<p>  每天的9:30执行</p>
-</li>
-<li><p>StartInterval<br>设置执行的时间间隔，单位为秒</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;StartInterval&lt;/key&gt;</div><div class="line">&lt;integer&gt;3600&lt;/integer&gt;</div></pre></td></tr></table></figure>
-<p>每小时执行一次</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>使用launchctl加载plist<br>任务描述文件写好后，怎么使用它呢？可以使用launchctl工具，添加任务到launchd。</p>
-<p>系统定义了几个位置来存放任务列表</p>
-<p>~/Library/LaunchAgents 由用户自己定义的任务项<br>/Library/LaunchAgents 由管理员为用户定义的任务项<br>/Library/LaunchDaemons 由管理员定义的守护进程任务项<br>/System/Library/LaunchAgents 由Mac OS X为用户定义的任务项<br>/System/Library/LaunchDaemons 由Mac OS X定义的守护进程任务项</p>
-<p>为用户定义的任务项，只以用户登陆后才会执行，守护进程任务项无论用户是否登陆都会执行<br>根据添加的任务类型，把它拷贝到相应的目录，通过launchctl来加载：<br>建议添加到~/Library/LaunchAgents<br>添加 launchctl load ~/Library/LaunchAgents/com.test.plist</p>
-<p>移除 launchctl unload ~/Library/LaunchAgents/com.test.plist<br>查看 launchctl list</p>
-<p>最后这些如果你觉得麻烦，下面推荐你一款好用的工具“launchcontrol”<br>可以新增编辑任务，右边各种选项很方便。<br><img src="http://oc9orpe44.bkt.clouddn.com/16-9-9/14273694.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1741,7 +1735,7 @@ gunicorn -c gunicorn.py wsgi:app</code></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1749,7 +1743,7 @@ gunicorn -c gunicorn.py wsgi:app</code></p>
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1758,7 +1752,7 @@ gunicorn -c gunicorn.py wsgi:app</code></p>
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
