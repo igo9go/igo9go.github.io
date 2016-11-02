@@ -140,7 +140,7 @@ docker logs -f  跟踪守护式容器的日志
 
 1. 构建镜像时设置标签
 
-    docker build -t 'justudy/demo:v1'
+    docker build -t 'justudy/demo:v1' .
 2. 从git仓库构建docker镜像
 
      docker build -t 'justudy/demo:v1' git@github.com:justudy/demo
@@ -188,7 +188,31 @@ docker logs -f  跟踪守护式容器的日志
     `USER nginx`
     
     docker run -u 命令指定用户
+    
+6. VOLUME
+
+    用来向基于镜像创建的容器添加卷，一个卷式可以存在于一个或者多个容器内的特定目录。
+    `VOLUME ["/opt/project"]`
+ 
+ 7. ADD
+
+    用来讲构建环境下的文件和目录复制到镜像中
+    
+    `ADD _linux/var/spool/cron/crontabs/root /var/spool/cron/crontabs/root`
         
+8. COPY
 
+    COPY不会提取解压文件
+    `COPY ./composer.json /app/`
+9. ONBUILD
+    为镜像添加触发器，当一个镜像被用作其他镜像的基础镜像时，该镜像的触发器将会执行
+    
+```
+ONBUILD ADD . /app/src
+ONBUILD RUN cd /app/src && make
+```
+####讲镜像推送到Docker Hub
 
+镜像构建完毕，将他上传到docker hub。
+`docker push youruser/yourimage`
 
