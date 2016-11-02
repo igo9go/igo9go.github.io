@@ -84,19 +84,15 @@
 
 
 
-<meta name="description" content="利用pcntl_fork实现PHP多进程代码如下:
-12345678910111213141516171819202122232425262728293031323334function runTasks($tasks)	&amp;#123;		$linenum = 2;		$count = count($tasks);		if ($count &amp;gt; 30) &amp;#123;			$linenum = (">
-<meta property="og:type" content="article">
-<meta property="og:title" content="PHP多进程实践">
-<meta property="og:url" content="http://igo9go.github.io/2016/09/13/PHP多进程实践/index.html">
+<meta name="description" content="个人站">
+<meta property="og:type" content="website">
+<meta property="og:title" content="justudy">
+<meta property="og:url" content="http://igo9go.github.io/tags/docker/index.html">
 <meta property="og:site_name" content="justudy">
-<meta property="og:description" content="利用pcntl_fork实现PHP多进程代码如下:
-12345678910111213141516171819202122232425262728293031323334function runTasks($tasks)	&amp;#123;		$linenum = 2;		$count = count($tasks);		if ($count &amp;gt; 30) &amp;#123;			$linenum = (">
-<meta property="og:updated_time" content="2016-09-13T09:11:38.000Z">
+<meta property="og:description" content="个人站">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP多进程实践">
-<meta name="twitter:description" content="利用pcntl_fork实现PHP多进程代码如下:
-12345678910111213141516171819202122232425262728293031323334function runTasks($tasks)	&amp;#123;		$linenum = 2;		$count = count($tasks);		if ($count &amp;gt; 30) &amp;#123;			$linenum = (">
+<meta name="twitter:title" content="justudy">
+<meta name="twitter:description" content="个人站">
 
 
 
@@ -117,9 +113,9 @@
 
 
 
-  <link rel="canonical" href="http://igo9go.github.io/2016/09/13/PHP多进程实践/"/>
+  <link rel="canonical" href="http://igo9go.github.io/tags/docker/"/>
 
-  <title> PHP多进程实践 | justudy </title>
+  <title> 标签: docker | justudy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -140,7 +136,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,149 +244,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        docker
+        <small>标签</small>
+      </h2>
+    </div>
 
     
-      <header class="post-header">
+      
 
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/11/02/docker学习笔记/" itemprop="url">
               
-                PHP多进程实践
+                <span itemprop="name">docker学习笔记</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-13T16:39:04+08:00" content="2016-09-13">
-              2016-09-13
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-11-02T10:07:48+08:00"
+              content="2016-11-02" >
+          11-02
+        </time>
+      </div>
 
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>利用pcntl_fork实现PHP多进程代码如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">function runTasks($tasks)</div><div class="line">	&#123;</div><div class="line">		$linenum = 2;</div><div class="line">		$count = count($tasks);</div><div class="line">		if ($count &gt; 30) &#123;</div><div class="line">			$linenum = (int)($count/15);</div><div class="line">		&#125;</div><div class="line">		//任务分割</div><div class="line">		$chunks = array_chunk($tasks, $linenum);</div><div class="line">		$procs = array();</div><div class="line">		foreach ($chunks as $chunk) &#123;</div><div class="line">			$pid = pcntl_fork();</div><div class="line">			if ($pid == -1) &#123;</div><div class="line">				die(&apos;could not fork&apos;);</div><div class="line">			&#125; else if ($pid) &#123;</div><div class="line">				$procs[] = $pid;</div><div class="line">			&#125; else &#123;</div><div class="line">				foreach ($chunk as $line) &#123;</div><div class="line">					system(&apos;php &apos;. $line);</div><div class="line">					echo $line.&quot; done!\n&quot;;</div><div class="line">				&#125;</div><div class="line">				exit(0);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		foreach ($procs as $proc) &#123;</div><div class="line">			pcntl_waitpid($proc, $status);</div><div class="line">		&#125;</div><div class="line">		unset($pid);</div><div class="line">		$pid = NULL;</div><div class="line">		unset($procs);</div><div class="line">		$procs = NULL;</div><div class="line">		unset($chunks);</div><div class="line">		$chunks = NULL;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<p>部署脚本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">source /etc/profile</div><div class="line">source /root/.bash_profile</div><div class="line"></div><div class="line">nowDate=`date +%Y%m%d`</div><div class="line">cd /yourpath</div><div class="line"></div><div class="line">nowTime=`date +%M`</div><div class="line">//每小时一次 01分的时候</div><div class="line">if [ &quot;$nowTime&quot; -eq &quot;01&quot; ]</div><div class="line">then</div><div class="line">	ProcessCount=`ps -ef|grep &quot;tash.php&quot; |grep -v &quot;grep&quot;|wc -l`</div><div class="line">	if [ $ProcessCount -lt 1 ]</div><div class="line">		then</div><div class="line">		nohup /usr/bin/php test.php &gt;&gt; /dev/null &amp;</div><div class="line">		echo &quot;Create test.php run!&quot;</div><div class="line">	fi</div><div class="line">fi</div></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    <div>
-      
-        
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/14709726873530.jpg" alt="周强 wechat" style="width: 200px; max-width: 100%;"/>
-    <div>多谢打赏</div>
-</div>
-
-
-      
-    </div>
-
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/14709726873530.jpg" alt="周强 WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/14709726873530.jpg" alt="周强 Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
-
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/09/13/ssh服务/" rel="next" title="ssh服务">
-                <i class="fa fa-chevron-left"></i> ssh服务
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/23/PHP那些鲜为人知的有用函数/" rel="prev" title="PHP那些鲜为人知的有用函数">
-                PHP那些鲜为人知的有用函数 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -398,10 +291,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -421,17 +310,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -523,17 +403,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -630,10 +499,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
