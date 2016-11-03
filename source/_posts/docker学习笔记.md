@@ -35,7 +35,13 @@ categories: docker
 - 高性能、超大规模的宿主机部署
 - ......
 
+
+
 ### docker相关命令
+
+docker rmi $(docker images --filter dangling=true -q)
+执行这条命令删除pull过程或者create过程产生的临时镜像，剩下的都是有用的镜像。镜像是一层层叠加起来的，你使用的是带名字和tag的发布镜像,那些中间镜像没有名字,只有哈希,所以叫none。。
+
 docker run -it  --name  hahah  ubuntu /bin/bash
 
 
