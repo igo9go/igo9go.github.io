@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="架构," />
 
 
 
@@ -84,15 +84,28 @@
 
 
 
-<meta name="description" content="个人站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="justudy">
-<meta property="og:url" content="http://igo9go.github.io/tags/职业/index.html">
+<meta name="description" content="在很多的平台应用中，都有这样的需求，平台内包括多个子系统或者属于其管控范围内的其他平台，需要对这些系统进行统一的监控，来查看当前的运行状态或者其他运行信息，我们的应用也有这样的一个情况，需要再外网服务端（平台）上监控，其下运行的多个内网服务端的网络状况，查阅了写资料后确立了2种可实现的方式。简单的说就是服务端需要实时了解其下运行的客户端的情况。
+
+轮询机制
+
+轮询：概括来说是服务端定时主动的去与要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轮询与心跳机制">
+<meta property="og:url" content="http://igo9go.github.io/2016/11/03/轮询与心跳机制/index.html">
 <meta property="og:site_name" content="justudy">
-<meta property="og:description" content="个人站">
+<meta property="og:description" content="在很多的平台应用中，都有这样的需求，平台内包括多个子系统或者属于其管控范围内的其他平台，需要对这些系统进行统一的监控，来查看当前的运行状态或者其他运行信息，我们的应用也有这样的一个情况，需要再外网服务端（平台）上监控，其下运行的多个内网服务端的网络状况，查阅了写资料后确立了2种可实现的方式。简单的说就是服务端需要实时了解其下运行的客户端的情况。
+
+轮询机制
+
+轮询：概括来说是服务端定时主动的去与要">
+<meta property="og:updated_time" content="2016-11-03T01:10:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="justudy">
-<meta name="twitter:description" content="个人站">
+<meta name="twitter:title" content="轮询与心跳机制">
+<meta name="twitter:description" content="在很多的平台应用中，都有这样的需求，平台内包括多个子系统或者属于其管控范围内的其他平台，需要对这些系统进行统一的监控，来查看当前的运行状态或者其他运行信息，我们的应用也有这样的一个情况，需要再外网服务端（平台）上监控，其下运行的多个内网服务端的网络状况，查阅了写资料后确立了2种可实现的方式。简单的说就是服务端需要实时了解其下运行的客户端的情况。
+
+轮询机制
+
+轮询：概括来说是服务端定时主动的去与要">
 
 
 
@@ -113,9 +126,9 @@
 
 
 
-  <link rel="canonical" href="http://igo9go.github.io/tags/职业/"/>
+  <link rel="canonical" href="http://igo9go.github.io/2016/11/03/轮询与心跳机制/"/>
 
-  <title> 标签: 职业 | justudy </title>
+  <title> 轮询与心跳机制 | justudy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,74 +257,182 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        职业
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/22/youzan/" itemprop="url">
-              
-                <span itemprop="name">youzan</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-22T11:19:42+08:00"
-              content="2016-08-22" >
-          08-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/22/myhexin/" itemprop="url">
-              
-                <span itemprop="name">myhexin</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-22T11:19:31+08:00"
-              content="2016-08-22" >
-          08-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                轮询与心跳机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T09:04:23+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/架构/" itemprop="url" rel="index">
+                    <span itemprop="name">架构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在很多的平台应用中，都有这样的需求，平台内包括多个子系统或者属于其管控范围内的其他平台，需要对这些系统进行统一的监控，来查看当前的运行状态或者其他运行信息，我们的应用也有这样的一个情况，需要再外网服务端（平台）上监控，其下运行的多个内网服务端的网络状况，查阅了写资料后确立了2种可实现的方式。<br>简单的说就是服务端需要实时了解其下运行的客户端的情况。</p>
+<ol>
+<li><p>轮询机制</p>
+<blockquote>
+<p>轮询：概括来说是服务端定时主动的去与要监控状态的客户端（或者叫其他系统）通信，询问当前的某种状态，客户端返回状态信息，客户端没有返回或返回错误、失效信息、则认为客户端已经宕机，然后服务端自己内部把这个客户端的状态保存下来（宕机或者其他），如果客户端正常，那么返回正常状态，如果客户端宕机或者返回的是定义的失效状态那么当前的客户端状态是能够及时的监控到的，如果客户端宕机之后重启了那么当服务端定时来轮询的时候，还是可以正常的获取返回信息，把其状态重新更新。</p>
+</blockquote>
+</li>
+</ol>
+<ol>
+<li><p>心跳</p>
+<blockquote>
+<p>心跳：最终得到的结果是与轮询一样的但是实现的方式有差别，心跳不是服务端主动去发信息检测客户端状态，而是在服务端保存下来所有客户端的状态信息，然后等待客户端定时来访问服务端，更新自己的当前状态，如果客户端超过指定的时间没有来更新状态，则认为客户端已经宕机或者其状态异常。</p>
+</blockquote>
+</li>
+</ol>
+<p><a href="http://blog.csdn.net/aspnet_lyc/article/details/37318861?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">心跳机制详解</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/14709726873530.jpg" alt="周强 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>多谢打赏</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/14709726873530.jpg" alt="周强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/14709726873530.jpg" alt="周强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag">#架构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/02/docker学习笔记/" rel="next" title="docker学习笔记">
+                <i class="fa fa-chevron-left"></i> docker学习笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -319,6 +440,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -338,8 +463,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -431,6 +565,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -527,6 +672,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
