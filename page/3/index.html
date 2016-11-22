@@ -268,6 +268,242 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/07/PHP多进程引发的msyql连接数问题/" itemprop="url">
+                  PHP多进程引发的msyql连接数问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T14:45:47+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="PHP多进程引发的msyql连接数问题"><a href="#PHP多进程引发的msyql连接数问题" class="headerlink" title="PHP多进程引发的msyql连接数问题"></a>PHP多进程引发的msyql连接数问题</h1><p> 业务中有一块采用了PHP的pcntl_fork多进程，希望能提高效率，但是在执行的时候数据库报错<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> PDO::prepare(): Premature end of data (mysqlnd_wireprotocol.c:1244)</div><div class="line">Packets out of order. Expected 1 received 108. Packet size=7102829</div></pre></td></tr></table></figure></p>
+<p>发现应该是短时间大量的链接写入数据库.导致数据库无法响应</p>
+<p>show variables like ‘%max_connections%’;<br>show variables like ‘%back_log%’;</p>
+<p>修改my.ini 配置 back_log<br>back_log = 104<br>MySQL能有的连接数量。当主要MySQL线程在一个很短时间内得到非常多的连接请求，这就起作用，<br>然后主线程花些时间(尽管很短)检查连接并且启动一个新线程。back_log值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。<br>如果期望在一个短时间内有很多连接，你需要增加它。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，<br>以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。<br>另外，这值（back_log）限于您的操作系统对到来的TCP/IP连接的侦听队列的大小。<br>你的操作系统在这个队列大小上有它自己的限制（可以检查你的OS文档找出这个变量的最大值），试图设定back_log高于你的操作系统的限制将是无效的。</p>
+<p> 在linux中，/proc/sys/net/core/somaxconn这个参数，linux中内核的一个不错的参数somaxconn<br>　　看下其解析：<br>　　对于一个TCP连接，Server与Client需要通过三次握手来建立网络连接.当三次握手成功后,<br>　　我们可以看到端口的状态由LISTEN转变为ESTABLISHED,接着这条链路上就可以开始传送数据了.<br>　　每一个处于监听(Listen)状态的端口,都有自己的监听队列.监听队列的长度,与如下两方面有关:<br>　　- somaxconn参数.<br>　　- 使用该端口的程序中listen()函数.<br>　　1. 关于somaxconn参数:<br>　　定义了系统中每一个端口最大的监听队列的长度,这是个全局的参数,默认值为128,具体信息为:<br>　　Purpose:<br>　　Specifies the maximum listen backlog.<br>　　Values:<br>　　Default: 128 connections<br>　　Range: 0 to MAXSHORT<br>　　Type: Connect<br>　　Diagnosis:<br>　　N/A<br>　　Tuning<br>　　Increase this parameter on busy Web servers to handle peak connection rates.<br>　　看下FREEBSD的解析：<br>　　限制了接收新 TCP 连接侦听队列的大小。对于一个经常处理新连接的高负载 web服务环境来说，默认的 128 太小了。大多数环境这个值建议增加到 1024 或者更多。 服务进程会自己限制侦听队列的大小(例如 sendmail(8) 或者 Apache)，常常在它们的配置文件中有设置队列大小的选项。大的侦听队列对防止拒绝服务 DoS 攻击也会有所帮助。<br>   我们可以通过，<br>    echo 1000 &gt;/proc/sys/net/core/somaxconn<br>    修改连接数</p>
+<p>Mac 环境修改如下：<br>增加max open files。先查看一下:<br>$ sysctl -a | grep files<br>kern.maxfiles = 12288 kern.maxfilesperproc = 10240</p>
+<p>修改为<br>$ sudo sysctl -w kern.maxfiles=65535 $ sudo sysctl -w kern.maxfilesperproc=65535</p>
+<p>增加 max sockets<br>$ sysctl -a | grep somax</p>
+<p>kern.ipc.somaxconn: 128 $ sudo sysctl -w kern.ipc.somaxconn=2048</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/06/增加PHP程序配置文件实践/" itemprop="url">
+                  增加PHP程序配置文件实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-06T14:39:29+08:00" content="2016-09-06">
+              2016-09-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#增加PHP程序配置文件实践</p>
+<p>###最原始的方式</p>
+<p>写php程序时会直接把数据库、缓存的连接信息放在config.php文件里。这样做有两个弊端，1.在开发调试时必须先把连接信息改成本地的，要提交代码时再改回远程的，麻烦，也容易遗漏。2.开发人员可以直接看到线上数据库的连接地址、账号、密码，不安全。</p>
+<p>线上运行PHP程序时通常需要一个Http服务器，例如apache、nginx。以nginx为例，在配置文件中可以通过fastcgi_param指令来给PHP传递变量</p>
+<p>fastcgi_param  DB_HOST  “192.168.1.1”;</p>
+<p>这样就可以在PHP代码里通过$_SERVER[‘DB_HOST’]来获取到对应的值。</p>
+<p>所以开发环境和线上环境只要配好nginx的配置，就可以实现不改代码执行程序了。</p>
+<p>更进一步，可以传递一个标示当前环境的变量，例如</p>
+<p>fastcgi_param  CODE_ENV  “production”;</p>
+<p>然后在程序里可以根据$_SERVER[‘CODE_ENV’]的不同来执行一些不同的逻辑（比如开发环境会打印所有错误信息而线上环境不显示）</p>
+<p>###这样完美了吗？</p>
+<p>并没有，在实际应用中发现有两个问题：1.如果这个PHP程序不仅仅提供web服务，还提供了cli工具（例如数据库升级脚本），这个时候nginx传递的变量就过不来了。2.貌似不支持传递数组变量。</p>
+<p>解决思路</p>
+<p>要同时支持web和cli，通过nginx配置传变量已经行不通了，那能不能走php自己的配置呢？</p>
+<p>于是在php.ini的末尾加上如下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[userconf]</div><div class="line">userconf.db_host=127.0.0.1</div><div class="line">userconf.db_name=test</div></pre></td></tr></table></figure></p>
+<p>重启php-fpm之后，发现通过ini_get(‘userconf.db_host’)取到的数据是空，于是详细查看了php的文档，发现对于自定义的配置项，需要通过get_cfg_var()函数来获得。经过测试，在web和cli模式下，通过get_cfg_var(‘userconf.db_host’)可以拿到正确的值。</p>
+<p>再优化</p>
+<p>但这个方案还是有弊端：1.修改配置需要重启php-fpm。2.虽然php.ini里面支持数组的数据，但是还是不够灵活，最好是能直接用php配置。</p>
+<p>所以我们可以在php.ini里面只配置一个配置目录的路径，这个目录下放置各个程序的配置文件，php程序先从php.ini获取到这个目录的路径，再从这个目录下读取php格式的配置文件。示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$path = get_cfg_var(&apos;userconf.dir&apos;);</div><div class="line">$conf = include($path . &apos;/test.php&apos;);</div></pre></td></tr></table></figure>
+<p>这样配置文件是每次访问都会重新读取，变更时不需要重启php-fpm；而且不同的站点只要选择不同的配置文件名，就可以在一台服务器上共存。</p>
+<p>但这样还是有一个问题没有解决，那就是无法在同一台服务器上部署两个相同的站点，不过这个场景也不多，不解决也没关系。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/06/expect脚本使用/" itemprop="url">
                   expect脚本使用
                 </a>
@@ -1479,226 +1715,11 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/myhexin/" itemprop="url">
-                  myhexin
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T11:19:31+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/个人感悟/" itemprop="url" rel="index">
-                    <span itemprop="name">个人感悟</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#在同花顺的一年–基础的成长<br>进入同花顺也是机缘巧合吧，本来之前还对这家公司充满了不信任。不过不可否认，在同花顺将近一年的时间里技术上的成长很大很大。<br>在我找实习的那段时间，经常能看到各个网站同花顺的招聘，那时候根本不了解这家公司，对什么上市也没概念，感觉这家公司就是天天叫人去面试，就如外面的培训机构一样感觉不靠谱，所以我从来不接受同花顺的面试邀请。在一次我下午到文一路面试结束后，同花顺的hr给我打电话叫我去面试，记得已经下午五点了，打开地图一看挺近的，就抱着了解了解的态度去看看了。二个人出来问了一通，面试完了也没啥感觉。第二天一早就接到同花顺hr（婷姐）给我打电话通知我实习面试通过了，然后告诉我实习一天80快，中餐补助8块钱，我当时是有每月三千的薪资的，一想我就拒绝不打算去，然后婷姐跟我说这边技术氛围好，学习成大大，等转正以后工资都是六七千的，最后我也就答应去了。<br>在同花顺我所在的网站部，主要有二个团队，一个是负责圈子，社交SNS这类网站的，还有一个就是我所在的团队主要负责F10，个股，新闻资讯，行情接口等项目。刚过去是先做了一星期的练习题，而后通过了一星期的试用，就开始让我做数据报表，这是一个挤压很久没有专门的人去做的一个项目，大概做了一个多月的报表，报表现在看来并不难，可那时候对我还没有多少实战经验来说的已经是一头雾水，不过好在天资聪慧，哈哈，很快掌握了其中的奥妙，他们使用的是ZEND框架精简后的叫light框架。之后就是导师叫我和另外一个师兄一起做F10项目了…</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/12/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-12T09:32:36+08:00" content="2016-08-12">
-              2016-08-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1739,7 +1760,7 @@ case &apos;Shot&apos;:     return new Shot($options[0], $options[1], $options[2]
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

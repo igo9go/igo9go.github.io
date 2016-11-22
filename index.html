@@ -268,6 +268,420 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/22/Mysql索引哪些事/" itemprop="url">
+                  Mysql索引哪些事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-22T17:04:11+08:00" content="2016-11-22">
+              2016-11-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###索引有什么用</p>
+<ul>
+<li>为从数据库读取数据加速</li>
+<li>强制约束 (唯一索引 UNIQUE, 外键 FOREIGN KEY)</li>
+<li>没有任何索引的情况下查询页能正常运行</li>
+<li>但是那可能需要执行很长的时间</li>
+</ul>
+<p>###你可能听说过的索引类型</p>
+<ul>
+<li>BTREE索引 – mysql中主要的索引类型</li>
+<li>RTREE索引 – 只有MyISAM支持, 用于GIS</li>
+<li>HASH 索引 – MEMORY, NDB 支持</li>
+<li>BITMAP 索引 – MySQL 不支持</li>
+<li>FULLTEXT 索引 – MyISAM, Innodb（MySQL 5.6以上支持）</li>
+</ul>
+<p>###MyISAM、Innodb索引对比</p>
+<ul>
+<li><p>MyISAM</p>
+<p>  数据指针指向数据文件中的物理位置<br>  所有索引都是一样的（指向物理位置））</p>
+</li>
+<li>Innodb<br>  主键索引 (显式或隐式) - 直接将数据存储于索引的叶子节点，而不是指针<br>  二级索引 – 保存主键索引的值作为数据指针</li>
+</ul>
+<p>###BTREE索引能用于什么操作 ?</p>
+<p>查询所有 KEY=5 的记录 (点查询)<br>查询所有 KEY&gt;5 的记录 (开合间)<br>查询所有 5&lt;KEY&lt;10 的记录 (闭合间)<br>不适用于：查询KEY最后一个数字等于0的所有记录<br>因为这不能定义为范围查询操作</p>
+<p>###字符索引</p>
+<p>这（和数值）没什么区别… 真的<br>collation是为字符串定义的排序规则<br>如： “AAAA” &lt; “AAAB”<br>前缀LIKE 查询是一种特殊的范围查询<br>LIKE “ABC%” 的意思是：<br>“ABC[最小值]”&lt;KEY&lt;“ABC[最大值]”<br>LIKE “%ABC” 无法使用索引查询</p>
+<p>###联合索引</p>
+<p>是这样进行排序的， 比较首列，然后第二列，第三列以此类推，如：<br>KEY(col1,col2,col3)<br>(1,2,3) &lt; (1,3,1)<br>使用一个BTREE索引，而不是每个层级一个单独的BTREE索引</p>
+<p>###索引的开销</p>
+<p>索引是昂贵的，不要添加多余的索引<br>多数情况下，扩展索引比添加一个新的索引要好<br>写 - 更新索引常常是数据库写操作的主要开销<br>读 - 需要再硬盘和内存开销空间; 查询优化中需要额外的开销</p>
+<p>###索引成本的影响</p>
+<ul>
+<li>长主键索引（Innodb） – 使所有相应的二级索引 变得更长、更慢</li>
+<li>“随机”主键索引（Innodb） – 插入导致大量的页面分割</li>
+<li>越长的索引通常越慢</li>
+<li>Index with insertion in random order – SHA1(‘password’)</li>
+<li>低区分度的索引是低劣的 – 在性别字段建的索引</li>
+<li>相关索引是不太昂贵的– insert_time与自增id是相关的</li>
+</ul>
+<p>###Innodb表的索引</p>
+<ul>
+<li>数据按主键聚集</li>
+<li>选择最佳的字段作为主键</li>
+<li>比如评论表 – (POST_ID,COMMENT_ID) 是作为主键的不错选择，使得单个post的评论聚在一起</li>
+<li>或者 “打包” 单个 BIGINT（字段）</li>
+<li>主键隐式地附加到所有索引中</li>
+<li>KEY (A) 实质上是 KEY (A,ID)</li>
+<li>覆盖索引，有利于排序</li>
+</ul>
+<p>###MySQL是如何使用索引的</p>
+<p>查询<br>排序<br>避免读取数据（只读取索引）<br>其他专门的优化</p>
+<p>###MySQL优化器的第一法则<br>在复合索引中，MySQL在遇到返回查询(&lt;,&gt;,BETWEEN)时，将停止中止剩余部分（索引）的使用；但是使用IN(…)的”范围查询”则可以继续往右使用索引（的更多部分）</p>
+<p>###MySQL使用索引排序的规则</p>
+<ul>
+<li>不能对两个字段进行不同顺序的排序</li>
+<li>对非ORDER BY部分的字段只能使用点查询（=）– 在这种情形下，IN()也不行</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/20/git-commit-emoji/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-20T06:30:54+08:00" content="2016-11-20">
+              2016-11-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="git-commit-emoji-使用指南"><a href="#git-commit-emoji-使用指南" class="headerlink" title="git commit emoji 使用指南"></a>git commit emoji 使用指南</h1><h3 id="commit-格式"><a href="#commit-格式" class="headerlink" title="commit 格式"></a>commit 格式</h3><p>git commit 时，提交信息遵循以下格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">:emoji1: :emoji2: 主题</div><div class="line"></div><div class="line">提交信息主体</div><div class="line"></div><div class="line">Ref &lt;###&gt;</div></pre></td></tr></table></figure>
+<p>初次提交示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &quot;:tada: Initialize Repo&quot;</div></pre></td></tr></table></figure>
+<h3 id="emoji-指南"><a href="#emoji-指南" class="headerlink" title="emoji 指南"></a>emoji 指南</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">emoji</th>
+<th style="text-align:left">emoji 代码</th>
+<th style="text-align:left">commit 说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">:art: (调色板)</td>
+<td style="text-align:left"><code>:art:</code></td>
+<td style="text-align:left">改进代码结构/代码格式</td>
+</tr>
+<tr>
+<td style="text-align:left">:zap: (闪电)</td>
+<td style="text-align:left"><code>:zap:</code></td>
+<td style="text-align:left">提高性能</td>
+</tr>
+<tr>
+<td style="text-align:left">:fire: (火焰)</td>
+<td style="text-align:left"><code>:fire:</code></td>
+<td style="text-align:left">移除代码或文件</td>
+</tr>
+<tr>
+<td style="text-align:left">:bug: (bug)</td>
+<td style="text-align:left"><code>:bug:</code></td>
+<td style="text-align:left">修复 bug</td>
+</tr>
+<tr>
+<td style="text-align:left">:ambulance: (急救车)</td>
+<td style="text-align:left"><code>:ambulance:</code></td>
+<td style="text-align:left">重要补丁</td>
+</tr>
+<tr>
+<td style="text-align:left">:sparkles: (火花)</td>
+<td style="text-align:left"><code>:sparkles:</code></td>
+<td style="text-align:left">引入新功能</td>
+</tr>
+<tr>
+<td style="text-align:left">:memo: (备忘录)</td>
+<td style="text-align:left"><code>:memo:</code></td>
+<td style="text-align:left">撰写文档</td>
+</tr>
+<tr>
+<td style="text-align:left">:rocket: (火箭)</td>
+<td style="text-align:left"><code>:rocket:</code></td>
+<td style="text-align:left">部署功能</td>
+</tr>
+<tr>
+<td style="text-align:left">:lipstick: (口红)</td>
+<td style="text-align:left"><code>:lipstick:</code></td>
+<td style="text-align:left">更新 UI 和样式文件</td>
+</tr>
+<tr>
+<td style="text-align:left">:tada: (庆祝)</td>
+<td style="text-align:left"><code>:tada:</code></td>
+<td style="text-align:left">初次提交</td>
+</tr>
+<tr>
+<td style="text-align:left">:white_check_mark: (白色复选框)</td>
+<td style="text-align:left"><code>:white_check_mark:</code></td>
+<td style="text-align:left">增加测试</td>
+</tr>
+<tr>
+<td style="text-align:left">:lock: (锁)</td>
+<td style="text-align:left"><code>:lock:</code></td>
+<td style="text-align:left">修复安全问题</td>
+</tr>
+<tr>
+<td style="text-align:left">:apple: (苹果)</td>
+<td style="text-align:left"><code>:apple:</code></td>
+<td style="text-align:left">修复 macOS 下的问题</td>
+</tr>
+<tr>
+<td style="text-align:left">:penguin: (企鹅)</td>
+<td style="text-align:left"><code>:penguin:</code></td>
+<td style="text-align:left">修复 Linux 下的问题</td>
+</tr>
+<tr>
+<td style="text-align:left">:checkered_flag: (旗帜)</td>
+<td style="text-align:left"><code>:checked_flag:</code></td>
+<td style="text-align:left">修复 Windows 下的问题</td>
+</tr>
+<tr>
+<td style="text-align:left">:bookmark: (书签)</td>
+<td style="text-align:left"><code>:bookmark:</code></td>
+<td style="text-align:left">发行/版本标签</td>
+</tr>
+<tr>
+<td style="text-align:left">:rotating_light: (警车灯)</td>
+<td style="text-align:left"><code>:rotating_light:</code></td>
+<td style="text-align:left">移除 linter 警告</td>
+</tr>
+<tr>
+<td style="text-align:left">:construction: (施工)</td>
+<td style="text-align:left"><code>:construction:</code></td>
+<td style="text-align:left">工作进行中</td>
+</tr>
+<tr>
+<td style="text-align:left">:green_heart: (绿心)</td>
+<td style="text-align:left"><code>:green_heart:</code></td>
+<td style="text-align:left">修复 CI 构建问题</td>
+</tr>
+<tr>
+<td style="text-align:left">:arrow_down: (下降箭头)</td>
+<td style="text-align:left"><code>:arrow_down:</code></td>
+<td style="text-align:left">降级依赖</td>
+</tr>
+<tr>
+<td style="text-align:left">:arrow_up: (上升箭头)</td>
+<td style="text-align:left"><code>:arrow_up:</code></td>
+<td style="text-align:left">升级依赖</td>
+</tr>
+<tr>
+<td style="text-align:left">:construction_worker: (工人)</td>
+<td style="text-align:left"><code>:construction_worker:</code></td>
+<td style="text-align:left">添加 CI 构建系统</td>
+</tr>
+<tr>
+<td style="text-align:left">:chart_with_upwards_trend: (上升趋势图)</td>
+<td style="text-align:left"><code>:chart_with_upwards_trend:</code></td>
+<td style="text-align:left">添加分析或跟踪代码</td>
+</tr>
+<tr>
+<td style="text-align:left">:hammer: (锤子)</td>
+<td style="text-align:left"><code>:hammer:</code></td>
+<td style="text-align:left">重大重构</td>
+</tr>
+<tr>
+<td style="text-align:left">:heavy_minus_sign: (减号)</td>
+<td style="text-align:left"><code>:heavy_minus_sign:</code></td>
+<td style="text-align:left">减少一个依赖</td>
+</tr>
+<tr>
+<td style="text-align:left">:whale: (鲸鱼)</td>
+<td style="text-align:left"><code>:whale:</code></td>
+<td style="text-align:left">Docker 相关工作</td>
+</tr>
+<tr>
+<td style="text-align:left">:heavy_plus_sign: (加号)</td>
+<td style="text-align:left"><code>:heavy_plug_sign:</code></td>
+<td style="text-align:left">增加一个依赖</td>
+</tr>
+<tr>
+<td style="text-align:left">:wrench: (扳手)</td>
+<td style="text-align:left"><code>:wrench:</code></td>
+<td style="text-align:left">修改配置文件</td>
+</tr>
+<tr>
+<td style="text-align:left">:globe_with_meridians: (地球)</td>
+<td style="text-align:left"><code>:globe_with_meridians:</code></td>
+<td style="text-align:left">国际化与本地化</td>
+</tr>
+<tr>
+<td style="text-align:left">:pencil2: (铅笔)</td>
+<td style="text-align:left"><code>:pencil2:</code></td>
+<td style="text-align:left">修复 typo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://github.com/carloscuesta/gitmoji/" target="_blank" rel="external">gitmoji</a></li>
+<li><a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="external">An emoji guide for your commit messages</a></li>
+<li><a href="https://github.com/slashsBin/styleguide-git-commit-message" target="_blank" rel="external">styleguide-git-commit-message</a></li>
+<li><a href="http://www.webpagefx.com/tools/emoji-cheat-sheet/" target="_blank" rel="external">emoji-cheat-sheet</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/16/复习面向对象的OOA-OOD-OOP/" itemprop="url">
                   复习面向对象的OOA,OOD,OOP
                 </a>
@@ -1625,225 +2039,11 @@ panic recover
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/10/操作实现乐观锁/" itemprop="url">
-                  操作实现乐观锁
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T10:05:57+08:00" content="2016-10-10">
-              2016-10-10
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/08/获取缓存值的问题/" itemprop="url">
-                  获取缓存值的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T10:47:53+08:00" content="2016-10-08">
-              2016-10-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/cache/" itemprop="url" rel="index">
-                    <span itemprop="name">cache</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一般我们获取缓存值得姿势是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Object result = cache.get(CACHE_KEY);</div><div class="line">if(result == null)&#123;</div><div class="line">    //重新获取缓存</div><div class="line">    result = xxxx(xxx);</div><div class="line">    cache.put(CACHE_KEY,CACHE_TTL,result); </div><div class="line">&#125;</div><div class="line">return result;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>高并发下暴露问题<br>你的程序一直正常运行，直到某一日，运营的同事急匆匆的跑来找到你，你的程序挂了，可能是XXX在大量抓你的数据。我们重启了应用也没用，没几秒程序又挂了。</p>
-</blockquote>
-<p>机智的你通过简单的排查，得出数据库顶不住访问压力，顺利的将锅甩走。 不过仔细一想，我们不是有缓存吗，怎么缓存没起作用？ 查看下缓存，一切正常，也没发现什么问题啊？</p>
-<p>进过各种debug、查日志、测试环境模拟，花了整整一下午，你终于找到罪魁祸首，原因很简单，正是我们没有使用正确的姿势使用缓存<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; 问题分析</div><div class="line"></div><div class="line">这里我们排除熔断、限流等外部措施，单纯讨论缓存问题。</div><div class="line"></div><div class="line">假设你的应用需要访问某个资源（数据库/服务），其能支撑的最大QPS为100。为了提高应用QPS，我们加入缓存，并将缓存过期时间设置为X秒。此时，有个200并发的请求访问我们系统中某一路径，这些请求对应的都是同一个缓存KEY，但是这个键已经过期了。此时，则会瞬间产生200个线程访问下游资源，下游资源便有可能瞬间就奔溃了</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>guava是一个google发布的一个开源java工具库，其中guava cacha提供了一个轻量级的本地缓存实现机制，通过guava cache，我们可以轻松实现本地缓存。其中，guava cacha对缓存不存在或者过期情况下，获取缓存值得过程称之为Loading。<br><img src="images/14758950660632.jpg" alt=""><br>不过，这样虽然只有一个线程去执行loading动作，但是其他线程会等待loading线程接受后才能一同返回接口。此时，guava cache通过刷新策略，直接返回旧的缓存值，并生成一个线程去处理loading，处理完成后更新缓存值和过期时间。guava 称之为异步模式。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1884,7 +2084,7 @@ panic recover
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
